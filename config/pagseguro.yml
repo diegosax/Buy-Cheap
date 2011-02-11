@@ -1,0 +1,13 @@
+development: &development
+  developer: true
+  base: "http://localhost:3000"
+  return_to: "/pedido/efetuado"
+  email: user@example.com
+
+test:
+  <<: *development
+
+production:
+  authenticity_token: 0A15C8D670514BBF8A583497EDA1AD4B
+  email: diegosax@terra.com.br
+  return_to: "http://www.buycheap.com.br/pedido/efetuado"

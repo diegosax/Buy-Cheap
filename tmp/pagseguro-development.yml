@@ -1,0 +1,21 @@
+--- 
+"16": !map:ActiveSupport::HashWithIndifferentAccess 
+  email_cobranca: user@example.com
+  tipo: CP
+  moeda: BRL
+  ref_transacao: "16"
+  item_quant_1: "1"
+  item_id_1: "1"
+  item_descr_1: TV Plasma 42'
+  item_valor_1: "300000"
+  commit: Efetuar pagamento!
+"17": !map:ActiveSupport::HashWithIndifferentAccess 
+  email_cobranca: diegosax@terra.com.br
+  tipo: CP
+  moeda: BRL
+  ref_transacao: "17"
+  item_quant_1: "1"
+  item_id_1: "1"
+  item_descr_1: TV Plasma 42'
+  item_valor_1: "300000"
+  commit: Efetuar pagamento!

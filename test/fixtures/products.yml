@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  short_description: MyText
+  description: MyText
+  available_on: 2011-02-07 21:54:24
+  deleted_at: 2011-02-07 21:54:24
+  category_id: 1
+  company_id: 1
+  shippable: false
+  stock: 1
+
+two:
+  name: MyString
+  short_description: MyText
+  description: MyText
+  available_on: 2011-02-07 21:54:24
+  deleted_at: 2011-02-07 21:54:24
+  category_id: 1
+  company_id: 1
+  shippable: false
+  stock: 1
