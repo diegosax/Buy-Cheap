@@ -14,4 +14,4 @@ Total: <%=@cart.total_price%>
 <%= link_to 'Continuar Comprando', root_url %>
 <%= button_to 'Empty cart', @cart, :method => :delete,
 :confirm => 'Are you sure?' %>
-<%= button_to "Checkout" , order_url, :method => :post%>
+<%= button_to "Checkout" , new_order_path, :method => :get%>

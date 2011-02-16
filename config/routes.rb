@@ -10,6 +10,8 @@ Buycheap::Application.routes.draw do
 
   get "/pedido/efetuado" => "Orders#summary"
 
+  get "/orders/buscarcep" => "Orders#buscarcep"
+
   namespace :admin do
     root :to => "products#index"
     resources :companies
@@ -25,7 +27,7 @@ Buycheap::Application.routes.draw do
 
   resources :products
 
-  devise_for :users
+  devise_for :users, :controllers => { :sessions => "sessions", :registration => "registration" }
 
   resources :companies do
     resources :products

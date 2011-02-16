@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.xml
-  before_filter authenticate_user!, :only => :create
+
   def index
     @orders = Order.all
 
@@ -22,11 +22,55 @@ class OrdersController < ApplicationController
     end
   end
 
+  
   # GET /orders/new
   # GET /orders/new.xml
   def new
     @order = Order.new
-
+    @order.current_step = session[:order_step]
+    if !current_user
+      session[:payment_proccess] = true
+      session[:order_step] = @order.steps.first
+      @order.current_step = session[:order_step]
+    elsif @order.first_step?
+      @order.next_step
+      session[:order_step] = @order.current_step
+    elsif params[:step]
+      if @order.steps.include?(params[:step])
+        session[:payment_proccess] = true
+        session[:order_step] = params[:step]
+        @order.current_step = session[:order_step]
+      end
+    else
+      puts "CAIU NO PROCESSAMENTO DAS @ORDERS"
+      address = Address.where(:id => params[:shipping_address_id]).first
+      if !address
+        address = current_user.addresses.where(:preferred => true).first || current_user.addresses.first
+        if !address
+          redirect_to "master_error"
+        end
+      end
+      @order.current_step = session[:order_step]
+      @big_order = current_user.big_orders.build
+      @order_cart = Order.new
+      @order_cart.add_line_items_from_cart(current_cart)
+      company = ""
+      @order_cart.line_items.each do |item|
+        if item.product.company.name != company
+          @order = @big_order.orders.build
+          @order.company = item.product.company
+          @order.customer = current_user
+          @order.line_items << item
+          company = item.product.company.name
+        else
+          @order.line_items << item
+        end
+        @order.address = address
+        puts @order.inspect
+      end
+      @order.current_step = session[:order_step]
+      @order.next_step unless @order.last_step?
+    end
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @order }
@@ -41,45 +85,19 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.xml
   def create
-    @big_order = BigOrder.new
-    @order_cart = Order.new
-    @order_cart.add_line_items_from_cart(current_cart)
-    # Busca o pedido associado ao usuário; esta lógica deve
-    # ser implementada por você, da maneira que achar melhor
-    company = ""
-    @order_cart.line_items.each do |item|
-      if item.product.company.to_s != company
-        puts "a company do item eh diferente da atual"
-        @order = Order.new
-        @order.company = item.product.company
-        @order.customer = current_user
-        @order.big_order = @big_order
-        puts "@order: #{@order.inspect}"
-        puts "Tentando salvar"
-        if !@order.save
-          puts "Nao consegui salvar"
-          flash[:alert] = "Seu pedido nao pode ser criado. Por favor tente novamente mais tarde"
-          redirect_to root_url
-        end
-      end
-      company = item.product.company
+    
+    if @big_order.save
+      puts "Consegui Salvar, destroindo carrinho e sessao"
+      Cart.destroy(session[:cart_id])
+      session[:cart_id] = nil
+      puts "Tentando redirecionar para o checkout"
+      #checkout(@order)
+      render "new"
+        
+    else
+        
     end
-
-    respond_to do |format|
-      if @big_order.save
-        puts "Consegui Salvar, destroindo carrinho e sessao"
-        Cart.destroy(session[:cart_id])
-        session[:cart_id] = nil
-        puts "Tentando redirecionar para o checkout"
-        checkout(@order)
-        puts "Axo q nao redirecionou"
-        format.html {redirect_to "checkout"}
-        format.xml  { render :xml => @order, :status => :created, :location => @order }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @order.errors, :status => :unprocessable_entity }
-      end
-    end
+    
   end
 
   def checkout(order)

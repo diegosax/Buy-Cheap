@@ -1,5 +1,6 @@
 class Cart < ActiveRecord::Base
   has_many :line_items, :dependent => :destroy
+  belongs_to :customer
 
   #Metodo para adicionar um produto em um carrinho
   def add_product(product_id)

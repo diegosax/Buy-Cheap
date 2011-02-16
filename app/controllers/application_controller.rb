@@ -1,6 +1,29 @@
 class ApplicationController < ActionController::Base
+  helper_method :current_cart
+
   protect_from_forgery
 
+  def after_sign_up_path_for(resource)
+    sign_in resource
+    customer_path(resource)
+  end
+
+  def after_sign_in_path_for(resource_or_scope)
+    puts "Entrou no metodo para redirecionamento especifico"
+    if resource_or_scope.is_a?(User)
+      puts "o resource eh um usuario verificando sessao:"
+      if session[:payment_proccess]
+        puts "Sessao aceita. redirecionando para new_order_path"
+        new_order_path
+      else
+        puts 'Sessao nao aceita, chamando classe pai'
+        super
+      end
+    else
+      puts "resource nao eh um user, chamando classe pai"
+      super
+    end
+  end
 
   def is_company?
     return current_user.class == Company

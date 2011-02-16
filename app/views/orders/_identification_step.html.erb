@@ -1,0 +1,18 @@
+<div id="user_info">
+  <div id="login" style="border: 1px solid">
+  <h2>Sign in</h2>
+<%= form_for("user", :url => user_session_path) do |g| %>
+  <%= g.text_field :email %>
+  <%= g.password_field :password %>
+  <%= g.submit 'Sign in' %>
+<% end %>
+
+</div>
+  <input type="button" value="Cadastrar" id="add_endereco_btn"/>
+<div id="registration">
+  <%@customer = Customer.new
+    @customer.addresses.build
+%>
+  <%=render "customers/form", :customer => @customer%>
+</div>
+</div>

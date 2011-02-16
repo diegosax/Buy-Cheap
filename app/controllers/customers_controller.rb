@@ -25,6 +25,8 @@ class CustomersController < ApplicationController
   # GET /customers/new.xml
   def new
     @customer = Customer.new
+    @customer.addresses.build
+    
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,10 +43,11 @@ class CustomersController < ApplicationController
   # POST /customers.xml
   def create
     @customer = Customer.new(params[:customer])
-
+    @customer.addresses.first.preferred = true
     respond_to do |format|
       if @customer.save
-        format.html { redirect_to(@customer, :notice => 'Customer was successfully created.') }
+        sign_in @customer
+        format.html { redirect_to(new_order_url, :notice => 'Customer was successfully created.') }
         format.xml  { render :xml => @customer, :status => :created, :location => @customer }
       else
         format.html { render :action => "new" }

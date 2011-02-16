@@ -1,5 +1,7 @@
 <h1>Listing products</h1>
 <ul>
+  <%=link_to "Meu Carrinho", current_cart%>
+
 <% @products.each do |product| %>
   
     <li><%=link_to product.name, product %></li>

@@ -11,6 +11,9 @@ gem 'devise'
 
 gem 'pagseguro'
 
+gem 'brcep'
+
+gem 'jquery-rails'
 # Use unicorn as the web server
 # gem 'unicorn'
 

@@ -1,0 +1,32 @@
+
+<div id="details">
+  <ul>
+    <li>Cliente: <%=@big_order.customer.name%></li>
+    <li>Endereco: 
+      <p>
+        <%=@big_order.orders.first.address.address%>
+      </p>
+
+    </li>
+  </ul>
+
+  <h2>Resumo da compra</h2>
+  <ul>
+    <%@big_order.orders.each do |order|%>
+      <%order.line_items.each do |li|%>
+        <li><%=li.quantity%>* <%=li.product.name%> | <%=li.product.price%>  ----  <%=li.product.company.name%></li>
+      <%end%>
+    <%end%>
+  </ul>
+
+  <%=@big_order.inspect%>
+
+  <%@big_order.orders.each do |order|%>
+    <%=order.inspect%>
+  <%end%>
+
+  
+
+</div>
+
+<%=link_to "Mudar endereco", new_order_path(:step=>"shipping")%>

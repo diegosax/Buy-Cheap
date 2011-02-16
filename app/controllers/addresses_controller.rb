@@ -1,6 +1,8 @@
 class AddressesController < ApplicationController
   # GET /addresses
   # GET /addresses.xml
+  before_filter :authenticate_user!
+
   def index
     @addresses = Address.all
 
@@ -41,10 +43,12 @@ class AddressesController < ApplicationController
   # POST /addresses.xml
   def create
     @address = Address.new(params[:address])
-
+    @address.customer = current_user
     respond_to do |format|
       if @address.save
-        format.html { redirect_to(@address, :notice => 'Address was successfully created.') }
+        puts "Tentando redirecionar"
+        
+        format.html{redirect_to new_order_path(:shipping_address_id => @address.id)}
         format.xml  { render :xml => @address, :status => :created, :location => @address }
       else
         format.html { render :action => "new" }
