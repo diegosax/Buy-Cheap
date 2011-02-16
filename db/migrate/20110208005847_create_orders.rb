@@ -6,7 +6,7 @@ class CreateOrders < ActiveRecord::Migration
       t.integer :item_qtd
       t.float :total
       t.text :instructions
-      t.string :status
+      t.string :status, :default => "Incompleto"
 
       t.timestamps
     end

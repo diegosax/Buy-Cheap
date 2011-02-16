@@ -8,9 +8,11 @@ Buycheap::Application.routes.draw do
 
   root :to => "products#index"
 
-  get "/pedido/efetuado" => "Orders#summary"
+  get "/pedido/efetuado" => "Orders#show"
 
   get "/orders/buscarcep" => "Orders#buscarcep"
+
+  get "/orders/checkout" => "Orders#checkout", :as => :checkout
 
   namespace :admin do
     root :to => "products#index"

@@ -6,3 +6,31 @@ $(document).ready(function(){
         $("#registration").show();
     });
 });
+
+$(document).ready(function(){
+    $("#form_companies").validate({
+        rules:{
+            name:{
+             required: true
+            },
+            razao_social:{
+                required: true
+            },
+            CNPJ:{
+                required: true
+            }
+        },
+        messages:{
+            name:{
+                required: "Preencha o nome"
+            },
+            CNPJ:{
+                required: "Preencha o CNPJ"
+            },
+            razao_social:{
+                required: "Preencha a razao-social"
+            }
+        }
+    });
+
+});

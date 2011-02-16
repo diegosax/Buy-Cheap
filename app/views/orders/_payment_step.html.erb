@@ -29,4 +29,6 @@
 
 </div>
 
-<%=link_to "Mudar endereco", new_order_path(:step=>"shipping")%>
+<%=link_to "Mudar endereco", new_order_path(:step=>"shipping")%> <br />
+
+<%= pagseguro_form @pagseguro_order, :submit => "Efetuar pagamento!", :email => current_user.email %>

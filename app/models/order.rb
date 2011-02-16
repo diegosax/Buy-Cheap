@@ -45,10 +45,25 @@ class Order < ActiveRecord::Base
 
   #Metodo para adicionar os items que estao no carrinho ao pedido
   def add_line_items_from_cart(cart)
+    companies = []
     cart.line_items.each do |item|
-      item.cart_id = nil
-      line_items << item
+      if !companies.include?(item.product.company.name)
+        companies << item.product.company.name
+      end
     end
+    puts "INSPECIONANDO ARRAY DE COMPANIES"
+    puts companies.inspect
+    companies.each do |company|
+      cart.line_items.each do |item|
+        if item.product.company.name == company
+          item.cart_id = nil
+          line_items << item
+        end
+      end
+    end
+    puts "INspecionando o line_items"
+    puts line_items.inspect
+    line_items
   end
 
 
