@@ -129,3 +129,13 @@
   commit: Efetuar pagamento!
 ~: !map:ActiveSupport::HashWithIndifferentAccess {}
 
+"112": !map:ActiveSupport::HashWithIndifferentAccess 
+  email_cobranca: unicap@unicap.com
+  tipo: CP
+  moeda: BRL
+  ref_transacao: "112"
+  item_quant_1: "1"
+  item_id_1: "8"
+  item_descr_1: Aula Extra
+  item_valor_1: "5000"
+  commit: Efetuar pagamento!
