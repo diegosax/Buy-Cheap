@@ -9,8 +9,7 @@ class Product < ActiveRecord::Base
   validates :stock, :presence => true, :numericality => true
   validates :original_price, :numericality => true
   validates :price, :numericality => true
-  has_and_belongs_to_many :categories
-
+  
 
   def ensure_not_referenced_by_any_line_item
     if line_items.count.zero?
