@@ -12,7 +12,7 @@ Buycheap::Application.routes.draw do
 
   root :to => "products#index"
 
-  get "/pedido/efetuado" => "Orders#show"
+  get "/pedido/efetuado" => "Orders#confirm"
 
   get "/orders/buscarcep" => "Orders#buscarcep"
 

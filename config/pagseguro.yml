@@ -8,6 +8,6 @@ test:
   <<: *development
 
 production:
-  authenticity_token: 0A15C8D670514BBF8A583497EDA1AD4B
+  authenticity_token: 959BD6FEF823427BBA29A29629D9426E
   email: diegosax@terra.com.br
   return_to: "http://buycheap.heroku.com/pedido/efetuado"

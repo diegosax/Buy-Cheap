@@ -1,4 +1,21 @@
 class OrdersController < ApplicationController
+  skip_before_filter :verify_authenticity_token
+
+  def confirm
+    return unless request.post?
+
+    pagseguro_notification do |notification|
+      # Aqui você deve verificar se o pedido possui os mesmos produtos
+      # que você cadastrou. O produto só deve ser liberado caso o status
+      # do pedido seja "completed" ou "approved"
+      puts "RECEBEU NOTIFICACAO!!!!!!!!!!"
+      puts "VERIFICANDO STATUS DO PEDIDO: #{notification.status}"
+    end
+
+    render :nothing => true
+  end
+
+
   # GET /orders
   # GET /orders.xml
 
