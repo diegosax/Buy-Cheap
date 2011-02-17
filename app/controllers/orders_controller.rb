@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   # GET /orders.xml
 
   def index
-    @orders = Order.all
+    @orders = current_user.orders
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.xml
   def show
-    @order = BigOrder.find(params[:id])
+    @order = BigOrder.last
 
     respond_to do |format|
       format.html # show.html.erb
@@ -28,12 +28,19 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @order.current_step = session[:order_step]
-    puts "INICIO DO METODO: #{@order.current_step}"
+    puts "INICIO DO METODO: #{@order.current_step} - #{session[:order_step]}"
     if !current_user
       session[:payment_proccess] = true
       session[:order_step] = @order.steps.first
       @order.current_step = session[:order_step]
     elsif @order.first_step?
+      address = Address.where(:id => params[:shipping_address_id]).first
+      if !address
+        address = current_user.addresses.where(:preferred => true).first || current_user.addresses.first
+        if !address
+          redirect_to "master_error"
+        end
+      end
       @order.next_step
       session[:order_step] = @order.current_step
     elsif params[:step]
@@ -42,14 +49,19 @@ class OrdersController < ApplicationController
         session[:order_step] = params[:step]
         @order.current_step = session[:order_step]
       end
+    elsif session[:order_step] == "payment"
+      processar_pedido
+      puts "JA FOI CHAMADO O METODO Processar_pedido"
+      @order.current_step = session[:order_step]
     else
       @order.current_step = session[:order_step]
-      puts "CURRENT_STEP: #{@order.current_step}"
-      checkout
+      processar_pedido
       puts "CURRENT_STEP: #{@order.current_step}"
       @order.current_step = session[:order_step]
-      @order.next_step unless @order.last_step?
-      puts "CURRENT_STEP: #{@order.current_step}"
+      @order.next_step
+      session[:order_step] = @order.current_step
+      puts "ULTIMO CURRENT_STEP: #{@order.current_step}"
+      puts "ULTIMO CURRENT_STEP DA SESSION #{session[:order_step]}"
     end
     respond_to do |format|
       format.html # new.html.erb
@@ -65,19 +77,9 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.xml
   def create
-    
-    if @big_order.save
-      puts "Consegui Salvar, destroindo carrinho e sessao"
-      Cart.destroy(session[:cart_id])
-      session[:cart_id] = nil
-      puts "Tentando redirecionar para o checkout"
-      #checkout(@order)
-      render "new"
-        
-    else
-        
-    end
-    
+    puts "CRIANDO PEDIDO E SALVANDO NO BANCO DE DADOS"
+    checkout
+    redirect_to pagseguro_developer_path
   end
 
   # PUT /orders/1
@@ -145,23 +147,17 @@ class OrdersController < ApplicationController
 
     if @invoice.save
       puts "Consegui Salvar, destroindo carrinho e sessao"
-      Cart.destroy(session[:cart_id])
+      cart = Cart.find(session[:cart_id])
+      if cart
+        cart.clear_line_items
+        cart.save
+        Cart.destroy(session[:cart_id])
+      end      
       session[:cart_id] = nil
       puts "TESTANDO A INVOICE: "
       puts @invoice.inspect
       # Instanciando o objeto para geração do formulário
-      @pagseguro_order = PagSeguro::Order.new(@invoice.id)
-      puts "Verificando o order do pagseguro"
-      puts @pagseguro_order.inspect
-      puts @invoice.orders
-      # adicionando os produtos do pedido ao objeto do formulário
-      @invoice.orders.each do |order|
-        # Estes são os atributos necessários. Por padrão, peso (:weight) é definido para 0,
-        # quantidade é definido como 1 e frete (:shipping) é definido como 0.
-        order.line_items.each do |item|
-          @pagseguro_order.add :id => item.product.id, :price => item.product.price, :description => item.product.name, :quantity => item.quantity
-        end
-      end
+      criar_pagseguro_order
       puts "Verificando a order apos a adicao dos produtos:"
       puts @pagseguro_order.inspect
       puts @pagseguro_order.products.inspect
@@ -169,7 +165,22 @@ class OrdersController < ApplicationController
       flash[:alert] = "Houve um erro ao tentar salvar seu pedido"
       redirect_to root_url
     end
-    @pagseguro_order
+    @order = @pagseguro_order
+  end
+
+  def criar_pagseguro_order
+    @pagseguro_order = PagSeguro::Order.new(@invoice.id)
+    puts "Verificando o order do pagseguro"
+    puts @pagseguro_order.inspect
+    puts @invoice.orders
+    # adicionando os produtos do pedido ao objeto do formulário
+    @invoice.orders.each do |order|
+      # Estes são os atributos necessários. Por padrão, peso (:weight) é definido para 0,
+      # quantidade é definido como 1 e frete (:shipping) é definido como 0.
+      order.line_items.each do |item|
+        @pagseguro_order.add :id => item.product.id, :price => item.product.price, :description => item.product.name, :quantity => item.quantity
+      end
+    end
   end
   
 end

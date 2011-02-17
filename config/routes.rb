@@ -1,10 +1,14 @@
 Buycheap::Application.routes.draw do
   
+  resources :big_orders
+
   resources :categories
 
   resources :companies
 
   resources :carts
+
+  resources :orders
 
   root :to => "products#index"
 
@@ -16,14 +20,12 @@ Buycheap::Application.routes.draw do
 
   namespace :admin do
     root :to => "products#index"
-    resources :companies
+    resources :orders
     resources :products
   end
   
 
   resources :line_items
-
-  resources :orders
 
   resources :addresses
 
@@ -33,10 +35,11 @@ Buycheap::Application.routes.draw do
 
   resources :companies do
     resources :products
-    resources :orders
   end
 
   resources :customers
+
+  get "/pagseguro_developer" => "pag_seguro/developer#create"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

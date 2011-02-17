@@ -65,3 +65,67 @@
   item_descr_1: Aula Extra
   item_valor_1: "5000"
   commit: Efetuar pagamento!
+"51": !map:ActiveSupport::HashWithIndifferentAccess 
+  email_cobranca: diegosax@terra.com.br
+  tipo: CP
+  moeda: BRL
+  ref_transacao: "51"
+  item_quant_1: "1"
+  item_id_1: "2"
+  item_descr_1: Sofa Cama
+  item_valor_1: "160000"
+  item_quant_2: "1"
+  item_id_2: "3"
+  item_descr_2: Tenis Nike
+  item_valor_2: "50000"
+  item_quant_3: "1"
+  item_id_3: "8"
+  item_descr_3: Aula Extra
+  item_valor_3: "5000"
+  commit: Efetuar pagamento!
+"53": !map:ActiveSupport::HashWithIndifferentAccess 
+  email_cobranca: diegosax@terra.com.br
+  tipo: CP
+  moeda: BRL
+  ref_transacao: "53"
+  item_quant_1: "1"
+  item_id_1: "8"
+  item_descr_1: Aula Extra
+  item_valor_1: "5000"
+  commit: Efetuar pagamento!
+"79": !map:ActiveSupport::HashWithIndifferentAccess 
+  email_cobranca: diegosax@terra.com.br
+  tipo: CP
+  moeda: BRL
+  ref_transacao: "79"
+  item_quant_1: "1"
+  item_id_1: "1"
+  item_descr_1: TV Plasma 42'
+  item_valor_1: "300000"
+  commit: Efetuar pagamento!
+"97": !map:ActiveSupport::HashWithIndifferentAccess 
+  email_cobranca: diegosax@terra.com.br
+  tipo: CP
+  moeda: BRL
+  ref_transacao: "97"
+  item_quant_1: "2"
+  item_id_1: "1"
+  item_descr_1: TV Plasma 42'
+  item_valor_1: "300000"
+  item_quant_2: "1"
+  item_id_2: "6"
+  item_descr_2: tttt
+  item_valor_2: "3200"
+  commit: Efetuar pagamento!
+"101": !map:ActiveSupport::HashWithIndifferentAccess 
+  email_cobranca: diegosax@terra.com.br
+  tipo: CP
+  moeda: BRL
+  ref_transacao: "101"
+  item_quant_1: "1"
+  item_id_1: "2"
+  item_descr_1: Sofa Cama
+  item_valor_1: "160000"
+  commit: Efetuar pagamento!
+~: !map:ActiveSupport::HashWithIndifferentAccess {}
+

@@ -10,6 +10,7 @@
   <div id="logged">
     <%if current_user%>
       <%="Bem vindo #{current_user.email}"%> | <%=link_to "Sair", destroy_user_session_path %>
+      <%=link_to "Meus Pedidos", big_orders_path%>
     <%else%>
       <%=link_to "Login", new_user_session_path%>
     <%end%>

@@ -56,7 +56,7 @@ class Order < ActiveRecord::Base
     companies.each do |company|
       cart.line_items.each do |item|
         if item.product.company.name == company
-          item.cart_id = nil
+          
           line_items << item
         end
       end

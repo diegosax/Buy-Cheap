@@ -1,6 +1,16 @@
 class Cart < ActiveRecord::Base
   has_many :line_items, :dependent => :destroy
   belongs_to :customer
+  accepts_nested_attributes_for :line_items
+
+
+  def clear_line_items
+    puts "TESTANDO O BEFORE DESTROY METODO::::"
+    line_items.each do |item|
+      item.cart_id = nil
+    end
+    puts line_items.inspect
+  end
 
   #Metodo para adicionar um produto em um carrinho
   def add_product(product_id)

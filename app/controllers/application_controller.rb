@@ -3,6 +3,11 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
 
+  def clear_steps_session
+    session[:order_step] = "identification"
+    puts "TESTANDO O BEFORE_FILTER, VALOR DA SESSION: #{session[:order_step]}"
+  end
+
   def after_sign_up_path_for(resource)
     sign_in resource
     customer_path(resource)
@@ -10,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource_or_scope)
     puts "Entrou no metodo para redirecionamento especifico"
-    if resource_or_scope.is_a?(User)
+    if resource_or_scope.is_a?(Customer)
       puts "o resource eh um usuario verificando sessao:"
       if session[:payment_proccess]
         puts "Sessao aceita. redirecionando para new_order_path"
@@ -20,8 +25,7 @@ class ApplicationController < ActionController::Base
         super
       end
     else
-      puts "resource nao eh um user, chamando classe pai"
-      super
+      admin_root_url
     end
   end
 

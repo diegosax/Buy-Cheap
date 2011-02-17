@@ -1,12 +1,15 @@
 <p id="notice"><%= notice %></p>
 
 <h2> My Cart</h2>
-
+<%=form_for(@cart) do |f|%>
 <ul>
-  <%@cart.line_items.each do |item|%>
-    <li><%= item.quantity %> &times; <%=item.product.name%> | <%=item.total_price%></li>
+  <%=f.fields_for :line_items do |builder|%>
+  <%item = builder.object%>
+      <li><%= builder.text_field :quantity, :size => 1 %> &times; <%=item.product.name%> | <%=item.total_price%></li>
   <%end%>
 </ul>
+<%=f.submit "Atualizar quantidade"%>
+<%end%>
 
 Total: <%=@cart.total_price%>
 

@@ -1,0 +1,32 @@
+<h1>Listing big_orders</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @big_orders.each do |big_order| %>
+    <tr>
+    <h3>Pedidos da compra: <%=big_order.id%></h3>
+    <table>
+      <%big_order.orders.each do |order|%>
+        <tr>
+        <h4>Pedido Numero: <%=order.id%></h4>
+        <h5>Empresa: <%=order.company.name%></h5>
+          <ul>
+            <%order.line_items.each do |item|%>
+            <li><%=item.product.name%></li>
+          <%end%>
+        </ul>
+        </tr>
+      <%end%>
+
+    </table>
+
+  </tr>
+<% end %>
+</table>
+
+<br />
