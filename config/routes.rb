@@ -14,6 +14,8 @@ Buycheap::Application.routes.draw do
 
   get "/pedido/efetuado" => "Orders#confirm"
 
+  post "/pedido/efetuado" => "Orders#confirm"
+
   get "/orders/buscarcep" => "Orders#buscarcep"
 
   get "/orders/checkout" => "Orders#checkout", :as => :checkout
@@ -39,7 +41,7 @@ Buycheap::Application.routes.draw do
 
   resources :customers
 
-  get "/pagseguro_developer" => "pag_seguro/developer#create"
+  get "/pagseguro_developer" => "pag_seguro/action#create"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
