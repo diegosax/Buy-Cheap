@@ -1,1 +1,1 @@
-<%= pagseguro_form @order, :submit => "Efetuar pagamento!" %>
+<%= pagseguro_form @order, :submit => "Efetuar pagamento!", :email => @invoice.orders.last.company.email %>
