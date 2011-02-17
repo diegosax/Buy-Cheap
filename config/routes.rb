@@ -41,7 +41,7 @@ Buycheap::Application.routes.draw do
 
   resources :customers
 
-  get "/pagseguro_developer" => "pag_seguro/action#create"
+  #get "/pagseguro_developer" => "pag_seguro/developer#create"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

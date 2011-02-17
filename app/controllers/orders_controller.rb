@@ -96,7 +96,7 @@ class OrdersController < ApplicationController
   def create
     puts "CRIANDO PEDIDO E SALVANDO NO BANCO DE DADOS"
     checkout
-    redirect_to pagseguro_developer_path
+    #redirect_to pagseguro_developer_path
   end
 
   # PUT /orders/1
