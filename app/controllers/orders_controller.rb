@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only=>[:notification,:confirm]
 
   def notification
-    puts notification.inspect
+    puts Moip.notification[:email]
     assert_response :success
   end
 
