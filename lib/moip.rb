@@ -50,7 +50,7 @@ class Moip
         e.InstrucaoUnica do |i|
           i.Razao "BuyCheap. Numero do Pedido: #{order.id}"
           i.IdProprio order.id
-          i.URLRetorno "http://localhost:3000/orders/payment_return?status=18278878ssaza87x5689876&info=312966678&req=#{order.id}"
+          i.URLRetorno "http://localhost:3000/orders/payment_return?req=#{order.id}"
           i.Valores {|v| v.Valor(order.total_price, :moeda=>moeda)}
 #          i.FormasPagamento { |p|
 #            p.FormaPagamento "CartaoCredito"
