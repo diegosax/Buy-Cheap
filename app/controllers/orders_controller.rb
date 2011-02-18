@@ -1,5 +1,10 @@
 class OrdersController < ApplicationController
-  skip_before_filter :verify_authenticity_token, :only=>[:payment_return,:confirm]
+  skip_before_filter :verify_authenticity_token, :only=>[:notification,:confirm]
+
+  def notification
+    puts notification.inspect
+    assert_response :success
+  end
 
   def direct_charge
     @invoice = processar_pedido
@@ -29,10 +34,9 @@ class OrdersController < ApplicationController
     @response = Moip.authorize(:reason=>"Mensalidade",:id=>"Pag#{rand(1000)}",:value=>1)
   end
 
-  def payment_return
+  def summary
     if params[:req]
-      @big_order = BigOrder.find(params[:id])
-      
+      @big_order = BigOrder.find(params[:req])
     end
     
   end

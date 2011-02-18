@@ -7,7 +7,7 @@ class Moip
   puts [RAILS_ENV]
   puts Rails.env
   CONFIG = YAML.load_file(File.join(RAILS_ROOT, 'config', 'gateway.yml'))[RAILS_ENV]
-  STATUS = {1=>"authorized", 2=>"started", 3=>"printed", 4=>"completed", 5=>"canceled", 6=>"analysing"}
+  STATUS = {1=>"Autorizado", 2=>"Iniciado", 3=>"Boleto Impresso", 4=>"Concluido", 5=>"Cancelado", 6=>"Em analise",7=>"Estornado"}
 
   base_uri "#{CONFIG["uri"]}/ws/alpha"
   basic_auth CONFIG["token"], CONFIG["key"]
@@ -50,7 +50,7 @@ class Moip
         e.InstrucaoUnica do |i|
           i.Razao "BuyCheap. Numero do Pedido: #{order.id}"
           i.IdProprio order.id
-          i.URLRetorno "http://localhost:3000/orders/payment_return?req=#{order.id}"
+          i.URLRetorno "http://localhost:3000/orders/summary?req=#{order.id}"
           i.Valores {|v| v.Valor(order.total_price, :moeda=>moeda)}
 #          i.FormasPagamento { |p|
 #            p.FormaPagamento "CartaoCredito"

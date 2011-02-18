@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_filter :clear_steps_session
+  before_filter :is_company?, :only => [:edit, :update] #Só pode editar o produto ser for uma empresa.
   # GET /products
   # GET /products.xml
   def index

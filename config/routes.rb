@@ -18,9 +18,9 @@ Buycheap::Application.routes.draw do
 
   post "/orders/direct_charge" => "Orders#direct_charge", :as => :moip_checkout
 
-  post "/orders/payment_return" => "Orders#payment_return", :as => :moip_return
+  post "/orders/notification" => "Orders#notification", :as => :moip_return
 
-  get "/orders/payment_return" => "Orders#payment_return", :as => :moip_return
+  get "/orders/summary" => "Orders#summary", :as => :moip_summary
 
   get "/orders/buscarcep" => "Orders#buscarcep"
 
