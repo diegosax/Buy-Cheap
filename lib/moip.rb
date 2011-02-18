@@ -3,6 +3,8 @@ require 'builder'
 
 class Moip
   include HTTParty
+  puts "ANALISANDO: "
+  puts [RAILS_ENV] + "   -    " + Rails.env
   CONFIG = YAML.load_file(File.join(RAILS_ROOT, 'config', 'gateway.yml'))[RAILS_ENV]
   STATUS = {1=>"authorized", 2=>"started", 3=>"printed", 4=>"completed", 5=>"canceled", 6=>"analysing"}
 
