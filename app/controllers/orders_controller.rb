@@ -1,5 +1,39 @@
 class OrdersController < ApplicationController
-  skip_before_filter :verify_authenticity_token
+  skip_before_filter :verify_authenticity_token, :only=>[:payment_return,:confirm]
+
+  def direct_charge
+    @invoice = processar_pedido
+    if @invoice.save
+      puts "Consegui Salvar, destroindo carrinho e sessao"
+      cart = Cart.find(session[:cart_id])
+      if cart
+        cart.clear_line_items
+        cart.save
+        Cart.destroy(session[:cart_id])
+      end      
+      session[:cart_id] = nil
+      puts "TESTANDO A INVOICE: "
+      puts @invoice.inspect
+    else
+      flash[:alert] = "Houve um erro ao tentar salvar seu pedido"
+      redirect_to root_url
+    end
+    puts "Verificando valor do total_price antes de enviar: #{@invoice.total_price}"
+
+    response = Moip.authorize(@invoice,current_user)
+    redirect_to Moip.charge_url(response["Token"])
+  end
+
+
+  def manual_charge
+    @response = Moip.authorize(:reason=>"Mensalidade",:id=>"Pag#{rand(1000)}",:value=>1)
+  end
+
+  def payment_return
+    notification = Moip.notification(params)
+    puts notification.inspect
+    
+  end
 
   def confirm
     return unless request.post?

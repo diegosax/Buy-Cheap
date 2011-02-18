@@ -13,6 +13,10 @@ gem 'pagseguro'
 
 gem 'brcep'
 
+gem 'builder','2.1.2'
+
+gem 'httparty','0.6.1'
+
 gem 'jquery-rails'
 # Use unicorn as the web server
 # gem 'unicorn'

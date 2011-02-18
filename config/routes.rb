@@ -8,7 +8,7 @@ Buycheap::Application.routes.draw do
 
   resources :carts
 
-  resources :orders
+  
 
   root :to => "products#index"
 
@@ -16,9 +16,17 @@ Buycheap::Application.routes.draw do
 
   post "/pedido/efetuado" => "Orders#confirm"
 
+  post "/orders/direct_charge" => "Orders#direct_charge", :as => :moip_checkout
+
+  post "/orders/payment_return" => "Orders#payment_return", :as => :moip_return
+
+  get "/orders" => "Orders#payment_return", :as => :moip_return
+
   get "/orders/buscarcep" => "Orders#buscarcep"
 
   get "/orders/checkout" => "Orders#checkout", :as => :checkout
+
+  resources :orders
 
   namespace :admin do
     root :to => "products#index"

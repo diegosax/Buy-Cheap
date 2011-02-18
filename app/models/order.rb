@@ -43,6 +43,11 @@ class Order < ActiveRecord::Base
     (cart.total_price*100).round
   end
 
+  def total_price
+    total = self.line_items.to_a.sum{ |item| item.total_price}
+    puts "VALOR TOTAL: #{total}"
+  end
+
   #Metodo para adicionar os items que estao no carrinho ao pedido
   def add_line_items_from_cart(cart)
     companies = []

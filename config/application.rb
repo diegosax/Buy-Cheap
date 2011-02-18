@@ -15,6 +15,10 @@ module Buycheap
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
 
+     # This application needs to load every rb file under lib/ folder:
+    config.autoload_paths += %W(#{Rails.root.to_s}/lib)
+    config.autoload_paths += Dir["#{Rails.root.to_s}/lib/**/"]
+
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
