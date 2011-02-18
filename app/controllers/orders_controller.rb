@@ -30,7 +30,10 @@ class OrdersController < ApplicationController
   end
 
   def payment_return
-   
+    if params[:req]
+      @big_order = BigOrder.find(params[:id])
+      
+    end
     
   end
 
