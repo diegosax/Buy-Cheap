@@ -30,8 +30,7 @@ class OrdersController < ApplicationController
   end
 
   def payment_return
-    notification = Moip.notification(params)
-    puts notification.inspect
+   
     
   end
 

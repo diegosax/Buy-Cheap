@@ -20,7 +20,7 @@ Buycheap::Application.routes.draw do
 
   post "/orders/payment_return" => "Orders#payment_return", :as => :moip_return
 
-  get "/orders" => "Orders#payment_return", :as => :moip_return
+  get "/orders/payment_return" => "Orders#payment_return", :as => :moip_return
 
   get "/orders/buscarcep" => "Orders#buscarcep"
 
