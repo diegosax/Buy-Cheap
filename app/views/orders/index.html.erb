@@ -1,27 +1,38 @@
-<h1>Listing orders</h1>
+<div id="content" class="container_12">
 
-<table>
-  <tr>
-    <th>Cliente</th>
-    <th>Total de Items</th>
-    <th>Valor Total</th>
-    <th>Status</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  <div id="order_history" class="grid_12">
 
-<% @orders.each do |order| %>
-  <tr>
-    <td><%= order.customer.name %></td>
-    <td><%= order.item_qtd %></td>
-    <td><%= order.total %></td>
-    <td><%= order.status %></td>
-    <td><%= link_to 'Show', order %></td>
-    <td><%= link_to 'Edit', edit_order_path(order) %></td>
-    <td><%= link_to 'Destroy', order, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+    <div class="s_listing s_grid_view clearfix">
+      <%for order in @orders%>
+          <div class="grid_4">
+            <div class="s_order clearfix">
+              <p class="s_id"><span class="s_999">Pedido:</span> <span class="s_main_color">#<%=order.id%></span></p>
 
-<br />
+              <p class="s_status s_secondary_color"><%=order.status%></p>
+              <span class="clear"></span>
+              <dl class="clearfix">
+                <dt>Data do Pedido:</dt><dd><%=order.created_at.strftime("%d/%m/%Y")%></dd>
+                <dt>Empresa:</dt> <dd><%=order.company.name%></dd>
+              </dl>
+              <span class="clear border_eee"></span>
+              <br>
+              <p class="s_total left"><%=valor_formatado order.total%></p>
+
+              <%=link_to order, :class => "s_main_color right" do%>
+                <strong>
+                  Detalhes
+                </strong>
+              <%end%>
+            </div>
+          </div>
+      <%end%>
+      <a href="invoice.html" class="s_button_1 s_main_color_bgr"><span class="s_text">Continue</span></a>
+
+      <div class="clear"></div>
+      <br>
+
+      <br>
+
+    </div>
+
+  </div>

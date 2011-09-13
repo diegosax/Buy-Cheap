@@ -1,13 +1,13 @@
 class AddressesController < ApplicationController
   # GET /addresses
   # GET /addresses.xml
-  before_filter :authenticate_user!
+  before_filter :authenticate_user
 
   def index
     @addresses = Address.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # application.html.erb
       format.xml  { render :xml => @addresses }
     end
   end

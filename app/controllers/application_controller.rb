@@ -1,16 +1,31 @@
+#encoding: utf-8
+
 class ApplicationController < ActionController::Base
   helper_method :current_cart
+  helper_method :current_user
+  before_filter :load_categories
 
   protect_from_forgery
+
+
+  def load_categories
+    @categories = Category.super_categories
+  end
 
   def clear_steps_session
     session[:order_step] = "identification"
     puts "TESTANDO O BEFORE_FILTER, VALOR DA SESSION: #{session[:order_step]}"
   end
 
-  def after_sign_up_path_for(resource)
-    sign_in resource
-    customer_path(resource)
+  def authenticate_user
+    if session[:user_id].nil?
+      redirect_to log_in_url, :alert => "Você deve estar autenticado para acessar esta página"
+    end
+  end
+  def authenticate_company
+    if session[:company_id].nil?
+      redirect_to log_in_url, :alert => "Você deve estar autenticado para acessar esta página"
+    end
   end
 
   def after_sign_in_path_for(resource_or_scope)
@@ -21,8 +36,7 @@ class ApplicationController < ActionController::Base
         puts "Sessao aceita. redirecionando para new_order_path"
         new_order_path
       else
-        puts 'Sessao nao aceita, chamando classe pai'
-        super
+        root_url
       end
     else
       admin_root_url
@@ -56,4 +70,14 @@ class ApplicationController < ActionController::Base
     session[:cart_id] = cart.id
     cart
   end
+
+
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+
+  def current_company
+    @current_company ||= User.find(session[:company_id]) if session[:company_id]
+  end
+
 end

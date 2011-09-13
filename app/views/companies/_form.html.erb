@@ -1,50 +1,105 @@
-<%= form_for(@company) do |f| %>
-  <% if @company.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@company.errors.count, "error") %> prohibited this company from being saved:</h2>
+<div id="content" class="container_16">
 
-      <ul>
-      <% @company.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-<div id="form_companies">
-<div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-<div class="field">
-    <%= f.label :razao_social %><br />
-    <%= f.text_field :razao_social %>
-  </div>
-<div class="field">
-    <%= f.label "CNPJ:" %><br />
-    <%= f.text_field :document %>
-  </div>
-<div class="field">
-    <%= f.label "Área de Atuação" %><br />
-    <%= f.text_field :area %>
-  </div>
-<div class="field">
-    <%= f.label :telephone %><br />
-    <%= f.text_field :telephone %>
-  </div>
-<div class="field">
-    <%= f.label :celphone %><br />
-    <%= f.text_field :celphone %>
-  </div>
-<p><%= f.label :email %><br />
-  <%= f.text_field :email %></p>
+  <div class="grid_16">
 
-  <p><%= f.label :password %><br />
-  <%= f.password_field :password %></p>
+    <%= form_for((@company),:html => { :multipart => true }) do |f| %>
+        <% if @company.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@company.errors.count, "error") %> prohibited this company from being saved:</h2>
 
-  <p><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></p>
-</div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+              <ul>
+                <% @company.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <h2 class="s_title_1"><span class="s_secondary_color">Cadastro</span> de Empresa</h2>
+        <div class="clear"></div>
+
+        <div class="s_row_2 clearfix">
+          <label class="required">
+            <strong>
+              Nome fantasia
+            </strong>
+          </label>
+          <%= f.text_field :name %>
+        </div>
+
+        <div class="s_row_2 clearfix">
+          <label class="required">
+            <strong>
+              Razão Social
+            </strong>
+          </label>
+          <%= f.text_field :razao_social %>
+        </div>
+
+        <div class="s_row_2 clearfix">
+          <label class="required">
+            <strong>
+              CNPJ
+            </strong>
+          </label>
+          <%= f.text_field :document %>
+        </div>
+
+        <div class="s_row_2 clearfix">
+          <label class="required">
+            <strong>
+              Logotipo
+            </strong>
+          </label>
+          <%= f.file_field :image %>
+        </div>
+
+        <div class="s_row_2 clearfix">
+          <label class="required">
+            <strong>
+              Telefone Fixo
+            </strong>
+          </label>
+          <%= f.text_field :telephone %>
+        </div>
+
+        <div class="s_row_2 clearfix">
+          <label class="required">
+            <strong>
+              Email
+            </strong>
+          </label>
+          <%= f.text_field :email %>
+        </div>
+
+        <div class="s_row_2 clearfix">
+          <label class="required">
+            <strong>
+              Senha
+            </strong>
+          </label>
+          <%= f.password_field :password %>
+        </div>
+
+        <div class="s_row_2 clearfix">
+          <label class="required">
+            <strong>
+              Repita sua Senha
+            </strong>
+          </label>
+          <%= f.password_field :password_confirmation %>
+        </div>
+
+        <span class="s_button_1 s_main_color_bgr">
+             <%=f.submit "Cadastrar", :class => "button_like_link"%>
+          </span>
+
+        <br>
+        <br>
+
+        </div>
+
+        </div>
+
+
+    <% end %>

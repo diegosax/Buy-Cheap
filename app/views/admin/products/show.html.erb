@@ -45,6 +45,21 @@
   <%= @product.stock %>
 </p>
 
+<p>
+  <b>Price:</b>
+  <%= valor_formatado(@product.price) %>
+</p>
+
+<p>
+  <b>Original Price:</b>
+  <%= valor_formatado(@product.original_price) %>
+</p>
+
+<p>
+  <b>Foto do Produto:</b>
+<%= image_tag @product.image_url.to_s %>
+
+</p>
 
 <%= link_to 'Edit', edit_admin_product_path(@product) %> |
 <%= link_to 'Back', admin_products_path %>

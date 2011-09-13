@@ -5,7 +5,7 @@ class CustomersController < ApplicationController
     @customers = Customer.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # application.html.erb
       format.xml  { render :xml => @customers }
     end
   end
@@ -26,7 +26,7 @@ class CustomersController < ApplicationController
   def new
     @customer = Customer.new
     @customer.addresses.build
-    
+
 
     respond_to do |format|
       format.html # new.html.erb
@@ -42,16 +42,32 @@ class CustomersController < ApplicationController
   # POST /customers
   # POST /customers.xml
   def create
-    @customer = Customer.new(params[:customer])
-    @customer.addresses.first.preferred = true
     respond_to do |format|
-      if @customer.save
-        sign_in @customer
-        format.html { redirect_to(new_order_url, :notice => 'Customer was successfully created.') }
-        format.xml  { render :xml => @customer, :status => :created, :location => @customer }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @customer.errors, :status => :unprocessable_entity }
+      format.js do
+        begin
+          @address = BuscaEndereco.por_cep(params[:zipcode])
+        rescue
+          @address = nil
+          return
+        end
+        return
+      end
+      format.html do
+        @customer = Customer.new(params[:customer])
+        @customer.addresses.first.preferred = true
+        if @customer.save
+          puts "AEWWWWWWWWWWWWW CADASTROUUUUUUUUUUUUUUU"
+          session[:user_id] = @customer.id
+          current_cart.empty? ? redirect_path = root_url : redirect_path = new_order_url
+          puts "TEM QUE REDIRECIONAR PARA O ROOT: #{redirect_path.inspect}"
+          redirect_to(redirect_path, :notice => "Cadastro efetuado com sucesso")
+          return
+          puts "NAO PODE VIR ESTA LINHA!!!!!!!!!!!!!"
+        else
+          puts "NAO CADASTROUUUUUUUUUUUUU: #{@customer.errors.inspect}"
+          format.html { render :action => "new" }
+          format.xml  { render :xml => @customer.errors, :status => :unprocessable_entity }
+        end
       end
     end
   end

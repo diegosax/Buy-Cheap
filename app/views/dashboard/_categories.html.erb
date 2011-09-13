@@ -1,0 +1,31 @@
+<div id="categories" class="s_nav">
+  <ul>
+    <li id="menu_home">
+      <%=link_to "Todas", root_url%>
+    </li>
+    <li>
+      <%=link_to "Todas", products_url%>
+    </li>
+    <%@categories.each do |category|%>
+        <li>
+          <%=link_to category.name, products_path((controller_name == "Products" ? params.merge(:category => category) : {:category => category}))%>
+          <%if category.sub_categories.size > 0%>
+              <div class="s_submenu">
+                <ul class="s_list_1 clearfix">
+                 <h3>
+                   Dentro de <%=category.name%>
+                 </h3>
+                  <%category.sub_categories.each do |sub_category|%>
+                      <li>
+                        <%=link_to sub_category.name, products_path(controller_name == "Products" ? params.merge(:category => sub_category) : {:category => sub_category})%>
+                      </li>
+                  <%end%>
+                </ul>
+                <span class="clear border_eee"></span>
+
+              </div>
+          <%end%>
+        </li>
+    <%end%>
+  </ul>
+</div>

@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  razao_social: MyString
+  fantasia: MyString
+  cnpj: MyString
+  address: MyString
+  complemento: MyString
+  city: MyString
+  state: MyString
+  country: MyString
+  cep: MyString
+
+two:
+  razao_social: MyString
+  fantasia: MyString
+  cnpj: MyString
+  address: MyString
+  complemento: MyString
+  city: MyString
+  state: MyString
+  country: MyString
+  cep: MyString

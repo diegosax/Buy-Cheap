@@ -6,8 +6,8 @@ production:
 
 development:
   uri: https://desenvolvedor.moip.com.br/sandbox
-  token: LX5WC5DPCCYEBKCIPOVKOK9WN5K4PQPE
-  key: HCXWRNQJXQJOBWU6PVBJNBW4HDUQZ6KQZBQ07MGE
+  token: DGUQYQSFN1KQGBECCW8B1RHQR1PQVS9W
+  key: SC89R9F1DJESMOHH1AOLEVZGBE7CZPJTTEVTRE6Z
 
 test:
   uri: https://desenvolvedor.moip.com.br/sandbox

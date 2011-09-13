@@ -1,57 +1,110 @@
-<%= form_for([:admin, @product]) do |f| %>
-  <% if @product.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+<div id="content" class="container_16">
 
-      <ul>
-      <% @product.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <div class="grid_16">
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= form_for([:admin,@product],:html => { :multipart => true })  do |f| %>
+        <% if @product.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+              <ul>
+                <% @product.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <h2 class="s_title_1"><span class="s_secondary_color">Cadastro</span> de Produto</h2>
+        <div class="clear"></div>
+
+        <div class="s_row_2 clearfix">
+          <label class="required">
+            <strong>
+              Nome do produto
+            </strong>
+          </label>
+          <%= f.text_field :name %>
+        </div>
+
+        <div class="s_row_2 clearfix">
+          <label class="required">
+            <strong>
+              Breve descrição
+            </strong>
+          </label>
+          <%= f.text_field :short_description %>
+        </div>
+
+        <div class="s_row_2 clearfix">
+          <label><strong>Descrição completa</strong></label>
+          <%=f.text_area :description, :cols => 87, :rows => 10%>
+        </div>
+
+        <div class="s_row_2 clearfix select_date">
+          <label><strong>Disponível A PARTIR de:</strong></label>
+          <%= f.datetime_select :available_on , :start_year => Time.now.year, :order=>[:day, :month, :year],
+                                :use_month_names=>["Janeiro" ,"Fevereiro", "Março", "Abril" ,"Maio", "Junho","Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" ],
+                                :class => "inline"%>
+        </div>
+
+
+        <div class="s_row_2 clearfix select_date">
+          <label><strong>Disponível ATÉ</strong></label>
+          <%= f.datetime_select :deleted_at, :start_year => Time.now.year, :order=>[:day, :month, :year],
+                                :use_month_names=>["Janeiro" ,"Fevereiro", "Março", "Abril" ,"Maio", "Junho","Julho",
+                                                   "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" ],
+                                :class => "inline"%>
+        </div>
+
+        <div class="s_row_2 clearfix">
+          <label class="required">
+            <strong>
+              Quantidade disponível (Estoque)
+            </strong>
+          </label>
+          <%= f.text_field :stock %>
+        </div>
+        <div class="s_row_2 clearfix">
+          <label class="required">
+            <strong>
+              Preço praticado na empresa
+            </strong>
+          </label>
+          <%= f.text_field :original_price %>
+        </div>
+        <div class="s_row_2 clearfix">
+          <label class="required">
+            <strong>
+              Preço com desconto
+            </strong>
+          </label>
+          <%= f.text_field :price %>
+        </div>
+
+        <div class="s_row_2 clearfix">
+          <label class="required">
+            <strong>
+              Foto do produto
+            </strong>
+          </label>
+          <%= f.file_field :image %>
+        </div>
+
+        <div class="s_row_2 clearfix">
+          <label class="required">
+            <strong>
+              Foto do produto (via URL)
+            </strong>
+          </label>
+          <%= f.text_field :remote_image_url %>
+        </div>
+
+            <span class="s_button_1 s_main_color_bgr">
+             <%=f.submit "Cadastrar Produto", :class => "button_like_link"%>
+          </span>
+
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label :short_description %><br />
-    <%= f.text_area :short_description %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :available_on %><br />
-    <%= f.datetime_select :available_on %>
-  </div>
-  <div class="field">
-    <%= f.label :deleted_at %><br />
-    <%= f.datetime_select :deleted_at %>
-  </div>
-  <div class="field">
-    <%= f.label :category_id %><br />
-    <%= f.text_field :category_id %>
-  </div>
-  <div class="field">
-    <%= f.label :shippable %><br />
-    <%= f.check_box :shippable %>
-  </div>
-  <div class="field">
-    <%= f.label :stock %><br />
-    <%= f.text_field :stock %>
-  </div>
-<div class="field">
-    <%= f.label :original_price %><br />
-    <%= f.text_field :original_price %>
-  </div>
-<div class="field">
-    <%= f.label :price %><br />
-    <%= f.text_field :price %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+
+</div>

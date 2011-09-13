@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Buycheap</title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :defaults, "jquery.prettyLoader" %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+  <div id="logged">
+      <%="Bem vindo #{current_user.name}"%> | <%=link_to "Sair", destroy_user_session_path %>
+      <%=link_to "Meus Pedidos", admin_orders_path%>
+      <%= link_to 'Listing Products', admin_products_path %>
+      <%= link_to 'New Product', new_admin_product_path %>
+
+  </div>
+  <div id="messages">
+    <%=flash[:alert]%>
+    <%=flash[:notice]%>
+  </div>
+
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Logo</th>
+  </tr>
+
+<% @company.each do |company| %>
+  <tr>
+    <td><%= company.name %></td>
+    <td><%= image_tag @company.image_url.to_s %> </td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+
+<%= yield %>
+
+
+  <script type="text/javascript" charset="utf-8">
+	$(document).ready(function(){
+		$.prettyLoader();
+	});
+</script>
+</body>
+</html>

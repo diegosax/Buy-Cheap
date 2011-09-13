@@ -1,5 +1,40 @@
-<p id="notice"><%= notice %></p>
+<div id="intro">
+  <div id="intro_wrap">
+    <div class="container_12">
+      <div id="breadcrumbs" class="grid_12">
+        Visualizando ofertas de
+      </div>
+      <h1><%=@company.name%><%=link_to "Mudar Empresa", companies_url%> <span>|</span> <%=link_to "Visualizar todas as ofertas do site", root_url%></h1>
+      </div>
+    </div>
+  </div>
+  <div id="content" class="product_view container_12">
 
+    <div id="product" class="grid_12">
+      <div id="product_images" class="grid_4 alpha">
+        <%=image_tag @company.image_url%>
+      </div>
+      <div id="product_info" class="grid_4">
+        <dl class="clearfix">
+          <dt>Empresa</dt>
+          <dd><%=@company.name%></dd>
+          <dt>Cidade</dt>
+          <dd><%=@company.address.city if @company.address%></dd>
+          <dt>Ofertas ativas</dt>
+          <dd><%=@company.available_offers%></dd>
+        </dl>
+      </div>
+      <div class="grid_4 omega">
 
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+      </div>
+
+      <div class="clear"></div>
+      <div id="related_products" class="grid_12 alpha omega">
+        <h2 class="s_title_1"><span class="s_main_color">Ofertas </span> desta empresa</h2>
+        <div class="clear"></div>
+        <%=render "company_products"%>
+      </div>
+
+    </div>
+
+  </div>

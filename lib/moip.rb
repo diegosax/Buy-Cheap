@@ -3,10 +3,10 @@ require 'builder'
 
 class Moip
   include HTTParty
+
   puts "ANALISANDO: "
-  puts [RAILS_ENV]
   puts Rails.env
-  CONFIG = YAML.load_file(File.join(RAILS_ROOT, 'config', 'gateway.yml'))[RAILS_ENV]
+  CONFIG = YAML.load_file(File.join(RAILS_ROOT, 'config', 'gateway.yml'))[Rails.env]
   STATUS = {1=>"Autorizado", 2=>"Iniciado", 3=>"Boleto Impresso", 4=>"Concluido", 5=>"Cancelado", 6=>"Em analise",7=>"Estornado"}
 
   base_uri "#{CONFIG["uri"]}/ws/alpha"
@@ -15,7 +15,10 @@ class Moip
   class << self
     def authorize(order,current_user)
       xml = mount_request(order,current_user)
+      puts "TEM QUE PARAR AQUI"
       response = post('/EnviarInstrucao/Unica', :body => xml)
+      puts "PASSOU"
+
       raise(StandardError, "Webservice can't be reached") if response.nil?
       response = response["ns1:EnviarInstrucaoUnicaResponse"]["Resposta"]
       raise(StandardError, response["Erro"]) if response["Status"] == "Falha"
@@ -43,14 +46,15 @@ class Moip
     def mount_request(order,current_user)
       #reason, id, value = attributes[:reason], attributes[:id], attributes[:value]
       
-      endereco = current_user.addresses.where("preferred = true").first
+      endereco = order.address
+
       puts endereco.address
       moeda = "BRL"
       xml = Builder::XmlMarkup.new.EnviarInstrucao do |e|
         e.InstrucaoUnica do |i|
-          i.Razao "BuyCheap. Numero do Pedido: #{order.id}"
+          i.Razao "BuyCheap - Numero do Pedido: #{order.id}"
           i.IdProprio order.id
-          i.URLRetorno "http://buycheap.heroku.com/orders/summary?req=#{order.id}"
+          i.URLRetorno "https://buycheap.heroku.com/orders/summary?req=#{order.id}"
           i.Valores {|v| v.Valor(order.total_price, :moeda=>moeda)}
 #          i.FormasPagamento { |p|
 #            p.FormaPagamento "CartaoCredito"
@@ -60,16 +64,19 @@ class Moip
           i.Pagador{ |p|
             p.Nome current_user.name
             p.Email current_user.email
-            p.TelefoneCelular current_user.celphone
-            p.Identidade current_user.document
+              p.TelefoneCelular current_user.celphone
             p.EnderecoCobranca { |e|
               e.Logradouro endereco.address unless !endereco
-              e.Numero "222"
+              e.Numero endereco.number
               e.Complemento endereco.complement unless !endereco
               e.CEP endereco.zipcode unless !endereco
-              e.TelefoneFixo endereco.phone unless !endereco
+              e.Bairro endereco.bairro unless !endereco
+              e.Cidade endereco.city unless !endereco
+              e.Estado endereco.state unless !endereco
+              e.TelefoneFixo current_user.telephone unless !endereco
             }
           }
+
         end
       end
       puts xml.inspect

@@ -1,0 +1,24 @@
+<div class="s_grid_view s_listing clearfix">
+  <%@company.products.available.each do |product|%>
+      <div class="s_item grid_3" style="opacity: 1; ">
+        <%=link_to product, :class => "s_thumb" do%>
+            <%=image_tag product.image.to_s%>
+        <%end%>
+        <h3>
+          <%=link_to product.name, product%>
+        </h3>
+        <p class="s_currency s_old s_model">
+          De: <%=valor_formatado product.original_price%>
+        </p>
+        <p class="s_after">
+          Por: <%=valor_formatado product.price%>
+        </p>
+        <p class="s_price">
+          <span class="s_currency s_before"></span><%=percentagem_desconto product.original_price, product.price%>%</p>
+        <%=link_to line_items_path(:product_id => product),:method => :post, :class => "s_button_add_to_cart" do%>
+            <span class="s_icon_16"><span class="s_icon"></span>Adicionar ao carrinho</span>
+        <%end%>
+      </div>
+  <%end%>
+  <div class="clear"></div>
+</div>

@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  belongs_to :address
+  has_one :shipping_address, :class_name => Address
   belongs_to :company
   belongs_to :customer
   belongs_to :big_order
@@ -9,6 +9,7 @@ class Order < ActiveRecord::Base
 
   attr_writer :current_step
 
+ 
   def current_step
     @current_step || steps.first
   end
@@ -43,9 +44,11 @@ class Order < ActiveRecord::Base
     (cart.total_price*100).round
   end
 
+
+  #Metodo para calcular o valor total do pedido
   def total_price
-    total = self.line_items.to_a.sum{ |item| item.total_price}
-    puts "VALOR TOTAL: #{total}"
+    puts "O PRECO TOTAL DE ORDER FOI CHAMADO"
+    self.line_items.to_a.sum{ |item| item.total_price}
   end
 
   #Metodo para adicionar os items que estao no carrinho ao pedido
@@ -69,6 +72,16 @@ class Order < ActiveRecord::Base
     puts "INspecionando o line_items"
     puts line_items.inspect
     line_items
+  end
+
+  def companies
+    companies = []
+    cart.line_items.each do |item|
+      if !companies.include?(item.product.company.name)
+        companies << item.product.company.name
+      end
+    end
+    companies
   end
 
 

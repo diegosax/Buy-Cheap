@@ -5,7 +5,7 @@ class CompaniesController < ApplicationController
     @companies = Company.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # application.html.erb
       format.xml  { render :xml => @companies }
     end
   end
@@ -19,6 +19,7 @@ class CompaniesController < ApplicationController
       format.html # show.html.erb
       format.xml  { render :xml => @company }
     end
+
   end
 
   # GET /companies/new

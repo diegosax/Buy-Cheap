@@ -1,11 +1,12 @@
 class LineItemsController < ApplicationController
   # GET /line_items
   # GET /line_items.xml
+
   def index
     @line_items = LineItem.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # application.html.erb
       format.xml  { render :xml => @line_items }
     end
   end
@@ -59,7 +60,6 @@ class LineItemsController < ApplicationController
   # PUT /line_items/1.xml
   def update
     @line_item = LineItem.find(params[:id])
-
     respond_to do |format|
       if @line_item.update_attributes(params[:line_item])
         format.html { redirect_to(@line_item, :notice => 'Line item was successfully updated.') }

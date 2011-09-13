@@ -1,20 +1,81 @@
-<p id="notice"><%= notice %></p>
+<div id="content" class="container_12">
 
-<h2> My Cart</h2>
-<%=form_for(@cart) do |f|%>
-<ul>
-  <%=f.fields_for :line_items do |builder|%>
-  <%item = builder.object%>
-      <li><%= builder.text_field :quantity, :size => 1 %> &times; <%=item.product.name%> | <%=item.total_price%></li>
+  <%=form_for(@cart) do |f|%>
+
+      <div id="shopping_cart" class="grid_12">
+
+          <table class="s_table_1" width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tbody><tr>
+              <th width="60">Produto</th>
+              <th width="320">Nome</th>
+              <th>Empresa</th>
+              <th>Quantidade</th>
+              <th>Preço Unitário</th>
+              <th>Total</th>
+              <th width="65">Remover</th>
+            </tr>
+            <%if @cart.line_items.size > 0%>
+
+                <%=f.fields_for :line_items do |builder|%>
+
+                    <%item = builder.object%>
+                    <tr class="even">
+                      <td valign="middle">
+                        <%=link_to item.product do%>
+                            <%=image_tag item.product.image_url(:thumb).to_s, :width => 60, :height => 60, :alt => item.product.name%>
+                        <%end%>
+                      </td>
+                      <td valign="middle">
+                        <%=link_to item.product do%>
+                            <strong><%=item.product.name%></strong>
+                        <%end%>
+                      </td>
+                      <td valign="middle">
+                        <%=link_to item.product.company.name, item.product.company%>
+                      </td>
+                      <td valign="middle">
+                        <%= builder.text_field :quantity, :size => 1 %>
+                      </td>
+                      <td valign="middle"><%=valor_formatado item.product.price%></td>
+                      <td valign="middle"><%=valor_formatado item.total_price%></td>
+                      <td valign="middle"><%=link_to "remover", item, :method => :delete, :confirm => "Deseja realmente remover este item do carrinho?"%></td>
+                    </tr>
+                <%end%>
+            <%else%>
+                <tr>
+                  <td class="no_item">Nenhum item no carrinho</td>
+                </tr>
+            <%end%>
+
+            </tbody></table>
+          <br>
+          <p class="s_total"><strong>Frete:</strong> Grátis </p>
+          <p class="s_total s_secondary_color last"><strong>Total:</strong> <%=valor_formatado @cart.total_price%></p>
+
+          <div class="clear"></div>
+          <br>
+          <%=link_to root_url, :class => "s_button_1 s_ddd_bgr left" do%>
+              <span class="s_text">
+                Continuar Comprando
+              </span>
+          <%end%>
+          <%if @cart.line_items.size > 0%>
+              <%=link_to new_order_path, :class => "s_button_1 s_main_color_bgr" do%>
+              <span class="s_text">
+                Concluir
+              </span>
+              <%end%>
+
+          <span class="s_button_1 s_main_color_bgr">
+             <%=f.submit "Atualizar Carrinho", :class => "button_like_link"%>
+          </span>
+          <%end%>
+
+      </div>
+
+      <div class="clear"></div>
+      <br>
+      <br>
+
   <%end%>
-</ul>
-<%=f.submit "Atualizar quantidade"%>
-<%end%>
-
-Total: <%=@cart.total_price%>
-
-<%= link_to 'Edit', edit_cart_path(@cart) %> |
-<%= link_to 'Continuar Comprando', root_url %>
-<%= button_to 'Empty cart', @cart, :method => :delete,
-:confirm => 'Are you sure?' %>
-<%= button_to "Checkout" , new_order_path, :method => :get%>
+</div>

@@ -1,18 +1,14 @@
-<div id="user_info">
-  <div id="login" style="border: 1px solid">
-  <h2>Sign in</h2>
-<%= form_for("user", :url => user_session_path) do |g| %>
-  <%= g.text_field :email %>
-  <%= g.password_field :password %>
-  <%= g.submit 'Sign in' %>
-<% end %>
+<div id="intro">
+  <div id="intro_wrap">
+    <div class="container_12">
+      <div id="breadcrumbs" class="grid_12">
+        Você está em:
+      </div>
+      <h1>Identificação</h1>
+    </div>
+  </div>
+</div>
 
-</div>
-  <input type="button" value="Cadastrar" id="add_endereco_btn"/>
-<div id="registration">
-  <%@customer = Customer.new
-    @customer.addresses.build
-%>
-  <%=render "customers/form", :customer => @customer%>
-</div>
-</div>
+ <%=render "sessions/new", :customer => @customer%>
+
+<div class="clear"></div>

@@ -3,5 +3,17 @@ class Customer < User
   has_many :big_orders
   has_many :orders
   has_one :cart
-  accepts_nested_attributes_for :addresses
+  before_create :format_telephone
+  before_create :format_celphone
+
+  #usar_como_cpf :document
+
+  def shipping_address
+    address = self.addresses.where(:preferred => true).first
+    if address.nil?
+      address = current_user.addresses.first
+    end
+    address
+  end
+
 end

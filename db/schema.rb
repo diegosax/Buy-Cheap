@@ -10,38 +10,45 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110217015030) do
+ActiveRecord::Schema.define(:version => 20110823010621) do
 
   create_table "addresses", :force => true do |t|
+    t.integer  "customer_id"
     t.string   "address"
     t.string   "complement"
-    t.integer  "city_id"
-    t.integer  "state_id"
     t.string   "zipcode"
     t.string   "phone"
     t.string   "cel_phone"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "preferred"
-    t.integer  "customer_id"
+    t.string   "number"
+    t.string   "city"
+    t.string   "state"
+    t.string   "bairro"
   end
 
   create_table "big_orders", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "address_id"
     t.integer  "customer_id"
   end
 
   create_table "carts", :force => true do |t|
+    t.integer  "user_id"
+    t.float    "total"
+    t.integer  "quantity"
+    t.float    "freight"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "customer_id"
   end
 
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "super_category_id"
   end
 
   create_table "line_items", :force => true do |t|
@@ -55,22 +62,25 @@ ActiveRecord::Schema.define(:version => 20110217015030) do
   end
 
   create_table "orders", :force => true do |t|
-    t.float    "total"
-    t.string   "status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.integer  "customer_id"
     t.integer  "company_id"
+    t.integer  "item_qtd"
+    t.float    "total"
+    t.integer  "address_id"
+    t.string   "status",         :default => "Incompleto"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "big_order_id"
     t.string   "ip_address"
-    t.integer  "shipping_address_id"
-    t.string   "payment_status",      :default => "Aguardando Pagamento"
+    t.string   "payment_status", :default => "Aguardando Pagamento"
   end
 
   create_table "products", :force => true do |t|
     t.string   "name"
     t.text     "short_description"
     t.text     "description"
+    t.float    "original_price"
+    t.float    "price"
     t.datetime "available_on"
     t.datetime "deleted_at"
     t.integer  "category_id"
@@ -79,25 +89,17 @@ ActiveRecord::Schema.define(:version => 20110217015030) do
     t.integer  "stock"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "original_price"
-    t.float    "price"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "image"
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                               :default => "", :null => false
-    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
-    t.string   "password_salt",                       :default => "", :null => false
-    t.string   "reset_password_token"
-    t.string   "remember_token"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                       :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.string   "type",          :default => "Customer"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "type"
     t.string   "name"
     t.string   "document"
     t.string   "telephone"
@@ -107,9 +109,10 @@ ActiveRecord::Schema.define(:version => 20110217015030) do
     t.string   "razao_social"
     t.boolean  "verified"
     t.string   "area"
+    t.string   "image"
+    t.string   "email"
+    t.string   "password_hash"
+    t.string   "password_salt"
   end
-
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end

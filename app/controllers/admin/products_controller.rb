@@ -1,14 +1,13 @@
 class Admin::ProductsController < ApplicationController
   # GET /products
   # GET /products.xml
-  before_filter :authenticate_user!
-  before_filter :only_companies
+  before_filter :authenticate_company
 
   def index
-    @products = current_user.products.all
+    @products = current_company.products.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # application.html.erb
       format.xml  { render :xml => @products }
     end
   end
@@ -44,7 +43,7 @@ class Admin::ProductsController < ApplicationController
   # POST /products.xml
   def create
     @product = Product.new(params[:product])
-    @product.company = current_user
+    @product.company = current_company
     respond_to do |format|
       if @product.save
         format.html { redirect_to([:admin,@product], :notice => 'Product was successfully created.') }

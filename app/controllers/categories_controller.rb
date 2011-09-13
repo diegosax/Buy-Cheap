@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
     @categories = Category.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # application.html.erb
       format.xml  { render :xml => @categories }
     end
   end

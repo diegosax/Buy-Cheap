@@ -1,50 +1,188 @@
-<p id="notice"><%= notice %></p>
+<div id="content" class="product_view container_12">
 
-<p>
-  <b>Name:</b>
-  <%= @product.name %>
-</p>
+<div id="product" class="grid_12">
+<div id="product_images" class="grid_4 alpha">
+  <%=link_to @product.image_url.to_s, :rel => "prettyPhoto[gallery]" do%>
+      <%=image_tag @product.image_url(:details).to_s, :width => 300, :height => 300%>
+  <%end%>
 
-<p>
-  <b>Short description:</b>
-  <%= @product.short_description %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @product.description %>
-</p>
-
-<p>
-  <b>Available on:</b>
-  <%= @product.available_on %>
-</p>
-
-<p>
-  <b>Deleted at:</b>
-  <%= @product.deleted_at %>
-</p>
-
-<p>
-  <b>Category:</b>
-  <%= @product.category_id %>
-</p>
-
-<p>
-  <b>Company:</b>
-  <%= @product.company_id %>
-</p>
-
-<p>
-  <b>Shippable:</b>
-  <%= @product.shippable %>
-</p>
-
-<p>
-  <b>Stock:</b>
-  <%= @product.stock %>
-</p>
+</div>
+<div id="product_info" class="grid_4">
 
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+  <dl class="clearfix">
+    <h3><%=@product.name%></h3>
+    <p><%=link_to @product.company.name, @product.company%></p>
+    <dt>Oferta válida</dt>
+    <dd> até <%=@product.deleted_at.strftime("%d/%m/%Y")%></dd>
+    <dt>De:</dt>
+    <dd>
+      <p class="s_currency s_old s_model"> <%=valor_formatado @product.original_price%></p>
+    </dd>
+    <dt><strong>Por Apenas:</strong></dt>
+    <dd class="s_after">
+      <p class="s_total s_secondary_color last">
+        <%=valor_formatado @product.price%>
+      </p>
+
+
+    </dd>
+  </dl>
+  <p class="s_short_desc">
+    <%=@product.short_description%>
+  </p>
+</div>
+<div class="grid_4 omega">
+  <div class="suffix_1 left s_999">
+    <h2 class="s_secondary_color"><%=percentagem_desconto @product.original_price, @product.price%>% de desconto</h2>
+  </div>
+  <div class="suffix_1 left s_999">
+    <p>Você está economizando <%=valor_formatado(@product.original_price - @product.price)%></p>
+  </div>
+  <div id="product_buy" class="clearfix">
+    <%=link_to line_items_path(:product_id => @product),:method => "post", :id => "add_to_cart",:class => "s_main_color_bgr" do%>
+        <span class="s_text">
+          <span class="s_icon">
+
+          </span> Adicionar ao carrinho</span>
+    <%end%>
+  </div>
+</div>
+<div class="clear"></div>
+<div class="s_tabs grid_12 alpha omega ui-tabs ui-widget ui-widget-content ui-corner-all">
+  <ul class="s_tabs_nav clearfix ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+    <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active">
+      <a href="#product_description">Descrição</a></li>
+    <li class="ui-state-default ui-corner-top">
+      <a href="#product_reviews">
+        Instruções
+      </a>
+    </li>
+    <li class="ui-state-default ui-corner-top"><a href="#product_gallery">
+      Fotos
+    </a>
+    </li>
+  </ul>
+  <div class="s_tab_box">
+
+    <div id="product_description" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
+      <div class="cpt_product_description ">
+        <%=@product.description%>
+      </div>
+      <!-- cpt_container_end -->
+    </div>
+
+    <div id="product_reviews" class="s_listing ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
+      <div class="s_review last">
+        <p class="s_author"><strong>Shoppica</strong><small>(29/03/2011)</small></p>
+        <div class="right">
+          <div class="s_rating_holder">
+            <p class="s_rating s_rating_5"><span class="s_percent" style="width: 100%;"></span></p>
+            <span class="s_average">5 out of 5 Stars!</span>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <p>Vestibulum molestie tellus rhoncus nulla cursus quis dictum orci laoreet! metus. Vestibulum molestie tellus rhoncus nulla cursus quis dictum orci laoreet! metus.</p>
+      </div>
+      <div class="pagination"><div class="results">Showing 1 to 1 of 1 (1 Pages)</div></div>
+      <h2 class="s_title_1"><span class="s_main_color">Write</span> Review</h2>
+      <div id="review_title" class="clear"></div>
+      <div class="s_row_3 clearfix">
+        <label><strong>Your Name:</strong></label>
+        <input type="text">
+      </div>
+      <div class="s_row_3 clearfix">
+        <label><strong>Your Review:</strong></label>
+        <textarea style="width: 98%;" rows="8"></textarea>
+        <p class="s_legend"><span style="color: #FF0000;">Note:</span> HTML is not translated!</p>
+      </div>
+      <div class="s_row_3 clearfix">
+        <label><strong>Rating</strong></label>
+        <span class="clear"></span> <span>Bad</span>&nbsp;
+        <input type="radio">
+        &nbsp;
+        <input type="radio">
+        &nbsp;
+        <input type="radio">
+        &nbsp;
+        <input type="radio">
+        &nbsp;
+        <input type="radio">
+        &nbsp; <span>Good</span>
+      </div>
+      <span class="clear border_ddd"></span>
+      <a class="s_button_1 s_main_color_bgr"><span class="s_text">Continue</span></a> <span class="clear"></span> </div>
+    <div id="product_gallery" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
+      <ul class="s_thumbs clearfix">
+        <li><a class="s_thumb" href="/images/dummy/pic_2.jpg" title="Leica M7" rel="prettyPhoto[gallery]"><img src="/images/dummy/pic_2.jpg" width="120" title="Leica M7" alt="Leica M7"></a></li>
+        <li><a class="s_thumb" href="/images/dummy/pic_3.jpg" title="Leica M7" rel="prettyPhoto[gallery]"><img src="/images/dummy/pic_3.jpg" width="120" title="Leica M7" alt="Leica M7"></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="related_products" class="grid_12 alpha omega">
+  <h2 class="s_title_1"><span class="s_main_color">Related</span> Products (smaller)</h2>
+  <div class="clear"></div>
+  <div class="s_grid_view s_listing clearfix">
+    <div class="s_item grid_2" style="opacity: 1; ">
+      <a class="s_thumb" href="product.html"><img src="/images/dummy/pic_8.jpg" title="Panasonic Lumix" alt="Panasonic Lumix"></a>
+      <h3><a href="product.html">Panasonic Lumix</a></h3>
+      <p class="s_model">Product 4</p>
+      <p class="s_price">94.00<span class="s_currency s_after"> eur</span></p>
+      <a class="s_button_add_to_cart" href="cart.html"><span class="s_icon_16"><span class="s_icon"></span>Add to Cart</span></a>
+    </div>
+    <div class="s_item grid_2" style="opacity: 1; ">
+      <a class="s_thumb" href="product.html"><img src="/images/dummy/pic_9.jpg" title="Panasonic Lumix" alt="Panasonic Lumix"></a>
+      <h3><a href="product.html">Panasonic Lumix</a></h3>
+      <p class="s_model">Product 4</p>
+      <p class="s_price">94.00<span class="s_currency s_after"> eur</span></p>
+      <a class="s_button_add_to_cart" href="cart.html"><span class="s_icon_16"><span class="s_icon"></span>Add to Cart</span></a>
+    </div>
+    <div class="s_item grid_2" style="opacity: 1; ">
+      <a class="s_thumb" href="product.html"><img src="/images/dummy/pic_10.jpg" title="Panasonic Lumix" alt="Panasonic Lumix"></a>
+      <h3><a href="product.html">Panasonic Lumix</a></h3>
+      <p class="s_model">Product 4</p>
+      <p class="s_price">94.00<span class="s_currency s_after"> eur</span></p>
+      <a class="s_button_add_to_cart" href="cart.html"><span class="s_icon_16"><span class="s_icon"></span>Add to Cart</span></a>
+    </div>
+    <div class="s_item grid_2" style="opacity: 1; ">
+      <a class="s_thumb" href="product.html"><img src="/images/dummy/pic_1.jpg" title="Panasonic Lumix" alt="Panasonic Lumix"></a>
+      <h3><a href="product.html">Panasonic Lumix</a></h3>
+      <p class="s_model">Product 4</p>
+      <p class="s_price">94.00<span class="s_currency s_after"> eur</span></p>
+      <a class="s_button_add_to_cart" href="cart.html"><span class="s_icon_16"><span class="s_icon"></span>Add to Cart</span></a>
+    </div>
+    <div class="s_item grid_2" style="opacity: 1; ">
+      <a class="s_thumb" href="product.html"><img src="/images/dummy/pic_2.jpg" title="Panasonic Lumix" alt="Panasonic Lumix"></a>
+      <h3><a href="product.html">Panasonic Lumix</a></h3>
+      <p class="s_model">Product 4</p>
+      <p class="s_price">94.00<span class="s_currency s_after"> eur</span></p>
+      <a class="s_button_add_to_cart" href="cart.html"><span class="s_icon_16"><span class="s_icon"></span>Add to Cart</span></a>
+    </div>
+    <div class="s_item grid_2" style="opacity: 1; ">
+      <a class="s_thumb" href="product.html"><img src="/images/dummy/pic_3.jpg" title="Panasonic Lumix" alt="Panasonic Lumix"></a>
+      <h3><a href="product.html">Panasonic Lumix</a></h3>
+      <p class="s_model">Product 4</p>
+      <p class="s_price">94.00<span class="s_currency s_after"> eur</span></p>
+      <a class="s_button_add_to_cart" href="cart.html"><span class="s_icon_16"><span class="s_icon"></span>Add to Cart</span></a>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+
+<div id="product_tags" class="grid_12 alpha omega">
+  <h2 class="s_title_1"><span class="s_main_color">Product</span> Tags</h2>
+  <div class="clear"></div>
+  <ul class="clearfix">
+    <li><a href="#">Centrino</a></li>
+    <li><a href="#">Intel</a></li>
+    <li><a href="#">VAIO</a></li>
+    <li><a href="#">laptop</a></li>
+    <li><a href="#">notebook</a></li>
+  </ul>
+</div>
+
+</div>
+
+</div>

@@ -1,0 +1,12 @@
+<%if @address%>
+    $("#address_field").val("<%=@address[0] + ' ' + @address[1]%>");
+    $("#bairro_field").val("<%=@address[2]%>");
+    $("#state_field").val("<%=@address[3]%>");
+    $("#city_field").val("<%=@address[4]%>");
+<%else%>
+    alert("Houve um erro ao procurar seu endereço, por favor corrija os campos ou preencha manualmente.");
+<%end%>
+$(".complement_address").show();
+$("#zipcode_field, #cep_load").removeAttr("disabled");
+$("#zipcode_info, #cep_load_info").html("");
+$("#zipcode_field").val("<%=@address[5]%>");

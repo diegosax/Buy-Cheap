@@ -1,18 +1,32 @@
 Buycheap::Application.routes.draw do
-  
+
+  get "log_out" => "sessions#destroy", :as => "log_out"
+  get "log_in" => "sessions#new", :as => "log_in"
+  get "sign_up" => "users#new", :as => "sign_up"
+
+  resources :companies do
+    resources :products
+  end
+
+  resources :sessions
+
+  resources :users
+
+  get "dashboard/index"
+
   resources :big_orders
 
   resources :categories
 
-  resources :companies
+
 
   resources :carts
 
   
 
-  root :to => "products#index"
+  root :to => "dashboard#index"
 
-  get "/pedido/efetuado" => "Orders#confirm"
+  get "/pedido/efetuado" => "Orders#show"
 
   post "/pedido/efetuado" => "Orders#confirm"
 
@@ -32,6 +46,7 @@ Buycheap::Application.routes.draw do
     root :to => "products#index"
     resources :orders
     resources :products
+    get "log_out" => "sessions#destroy", :as => "log_out"
   end
   
 
@@ -39,9 +54,7 @@ Buycheap::Application.routes.draw do
 
   resources :addresses
 
-  resources :products
-
-  devise_for :users, :controllers => { :sessions => "sessions", :registration => "registration" }
+  resources :products, :only => [:index,:show]
 
   resources :companies do
     resources :products

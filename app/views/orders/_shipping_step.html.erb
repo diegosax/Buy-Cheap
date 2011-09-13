@@ -1,51 +1,47 @@
-  <%current_user.addresses.each do |address|%>
-    
-    <%=address.address%> | <%=link_to "Usar este endereco", new_order_path(:shipping_address_id => address.id)%><br />
-  <%end%>
+<div id="content" class="container_16">
 
-<%@address = current_user.addresses.build%>
-<%= form_for(@address) do |f| %>
-  <% if @address.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@address.errors.count, "error") %> prohibited this address from being saved:</h2>
 
-      <ul>
-      <% @address.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_field :address %>
+  <div id="contacts" class="s_info_page grid_16">
+
+    <h2><span class="s_secondary_color">Escolha</span> seu endereço de entrega</h2>
+
+
+    <%current_user.addresses.each do |address|%>
+        <p class="alpha grid_6">
+          <strong>
+            <%=address.city%>, <%=address.state%>
+          </strong>
+          <br>
+          <%=address.address %><br>
+          <%=address.number%> - <%=address.complement%><br>
+          <%=address.bairro%></p>
+
+        <p class="grid_5">
+
+          <%=link_to new_order_path(:shipping_address_id => address.id), :class => "s_button_1 s_main_color_bgr" do %>
+              <span class="s_text">Usar este endereço</span>
+          <%end%>
+        </p>
+
+        <span class="clear border_ddd"></span>
+    <%end%>
+
+    <h2>
+      <span class="s_secondary_color">
+        Cadastrar
+      </span>
+        um novo endereço
+    </h2>
+    <%address = current_user.addresses.build%>
+    <%=form_for address do |f|%>
+        <%=render "users/address", :builder => f%>
+        <div class="clear"></div>
+          <span class="s_button_1 s_main_color_bgr">
+            <%= f.submit 'Cadastrar Endereço', :class => "button_like_link" %>
+          </span>
+
+    <% end %>
+
   </div>
-  <div class="field">
-    <%= f.label :complement %><br />
-    <%= f.text_field :complement %>
-  </div>
-  <div class="field">
-    <%= f.label :city_id %><br />
-    <%= f.text_field :city_id %>
-  </div>
-  <div class="field">
-    <%= f.label :state_id %><br />
-    <%= f.text_field :state_id %>
-  </div>
-  <div class="field">
-    <%= f.label :zipcode %><br />
-    <%= f.text_field :zipcode %>
-  </div>
-  <div class="field">
-    <%= f.label :phone %><br />
-    <%= f.text_field :phone %>
-  </div>
-  <div class="field">
-    <%= f.label :cel_phone %><br />
-    <%= f.text_field :cel_phone %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

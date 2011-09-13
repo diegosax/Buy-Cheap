@@ -11,8 +11,8 @@
     <th>Company</th>
     <th>Shippable</th>
     <th>Stock</th>
-    <th></th>
-    <th></th>
+    <th>Price</th>
+    <th>Original Price</th>
     <th></th>
   </tr>
 
@@ -27,6 +27,8 @@
     <td><%= product.company.name unless product.company.nil? %></td>
     <td><%= product.shippable %></td>
     <td><%= product.stock %></td>
+    <td><%= valor_formatado(product.price) %></td>
+    <td><%= valor_formatado(product.original_price) %></td>
     <td><%= link_to 'Show', [:admin,product] %></td>
     <td><%= link_to 'Edit', edit_admin_product_path(product) %></td>
     <td><%= link_to 'Destroy', [:admin,product], :confirm => 'Are you sure?', :method => :delete %></td>

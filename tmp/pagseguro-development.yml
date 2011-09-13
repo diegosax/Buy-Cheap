@@ -1,141 +1,192 @@
---- 
-"16": !map:ActiveSupport::HashWithIndifferentAccess 
+---
+'16':
   email_cobranca: user@example.com
   tipo: CP
   moeda: BRL
-  ref_transacao: "16"
-  item_quant_1: "1"
-  item_id_1: "1"
+  ref_transacao: '16'
+  item_quant_1: '1'
+  item_id_1: '1'
   item_descr_1: TV Plasma 42'
-  item_valor_1: "300000"
+  item_valor_1: '300000'
   commit: Efetuar pagamento!
-"17": !map:ActiveSupport::HashWithIndifferentAccess 
+'17':
   email_cobranca: diegosax@terra.com.br
   tipo: CP
   moeda: BRL
-  ref_transacao: "17"
-  item_quant_1: "1"
-  item_id_1: "1"
+  ref_transacao: '17'
+  item_quant_1: '1'
+  item_id_1: '1'
   item_descr_1: TV Plasma 42'
-  item_valor_1: "300000"
+  item_valor_1: '300000'
   commit: Efetuar pagamento!
-"38": !map:ActiveSupport::HashWithIndifferentAccess 
+'38':
   email_cobranca: diegosax@terra.com.br
   tipo: CP
   moeda: BRL
-  ref_transacao: "38"
-  item_quant_1: "1"
-  item_id_1: "1"
+  ref_transacao: '38'
+  item_quant_1: '1'
+  item_id_1: '1'
   item_descr_1: TV Plasma 42'
-  item_valor_1: "300000"
-  item_quant_2: "1"
-  item_id_2: "3"
+  item_valor_1: '300000'
+  item_quant_2: '1'
+  item_id_2: '3'
   item_descr_2: Tenis Nike
-  item_valor_2: "50000"
-  item_quant_3: "1"
-  item_id_3: "2"
+  item_valor_2: '50000'
+  item_quant_3: '1'
+  item_id_3: '2'
   item_descr_3: Sofa Cama
-  item_valor_3: "160000"
-  item_quant_4: "1"
-  item_id_4: "7"
+  item_valor_3: '160000'
+  item_quant_4: '1'
+  item_id_4: '7'
   item_descr_4: Aula de extensao
-  item_valor_4: "30000"
-  item_quant_5: "1"
-  item_id_5: "8"
+  item_valor_4: '30000'
+  item_quant_5: '1'
+  item_id_5: '8'
   item_descr_5: Aula Extra
-  item_valor_5: "5000"
+  item_valor_5: '5000'
   commit: Efetuar pagamento!
-"44": !map:ActiveSupport::HashWithIndifferentAccess 
+'44':
   email_cobranca: diegosax@terra.com.br
   tipo: CP
   moeda: BRL
-  ref_transacao: "44"
-  item_quant_1: "1"
-  item_id_1: "1"
+  ref_transacao: '44'
+  item_quant_1: '1'
+  item_id_1: '1'
   item_descr_1: TV Plasma 42'
-  item_valor_1: "300000"
+  item_valor_1: '300000'
   commit: Efetuar pagamento!
-"50": !map:ActiveSupport::HashWithIndifferentAccess 
+'50':
   email_cobranca: diegosax@terra.com.br
   tipo: CP
   moeda: BRL
-  ref_transacao: "50"
-  item_quant_1: "1"
-  item_id_1: "8"
+  ref_transacao: '50'
+  item_quant_1: '1'
+  item_id_1: '8'
   item_descr_1: Aula Extra
-  item_valor_1: "5000"
+  item_valor_1: '5000'
   commit: Efetuar pagamento!
-"51": !map:ActiveSupport::HashWithIndifferentAccess 
+'51':
   email_cobranca: diegosax@terra.com.br
   tipo: CP
   moeda: BRL
-  ref_transacao: "51"
-  item_quant_1: "1"
-  item_id_1: "2"
+  ref_transacao: '51'
+  item_quant_1: '1'
+  item_id_1: '2'
   item_descr_1: Sofa Cama
-  item_valor_1: "160000"
-  item_quant_2: "1"
-  item_id_2: "3"
+  item_valor_1: '160000'
+  item_quant_2: '1'
+  item_id_2: '3'
   item_descr_2: Tenis Nike
-  item_valor_2: "50000"
-  item_quant_3: "1"
-  item_id_3: "8"
+  item_valor_2: '50000'
+  item_quant_3: '1'
+  item_id_3: '8'
   item_descr_3: Aula Extra
-  item_valor_3: "5000"
+  item_valor_3: '5000'
   commit: Efetuar pagamento!
-"53": !map:ActiveSupport::HashWithIndifferentAccess 
+'53':
   email_cobranca: diegosax@terra.com.br
   tipo: CP
   moeda: BRL
-  ref_transacao: "53"
-  item_quant_1: "1"
-  item_id_1: "8"
+  ref_transacao: '53'
+  item_quant_1: '1'
+  item_id_1: '8'
   item_descr_1: Aula Extra
-  item_valor_1: "5000"
+  item_valor_1: '5000'
   commit: Efetuar pagamento!
-"79": !map:ActiveSupport::HashWithIndifferentAccess 
+'79':
   email_cobranca: diegosax@terra.com.br
   tipo: CP
   moeda: BRL
-  ref_transacao: "79"
-  item_quant_1: "1"
-  item_id_1: "1"
+  ref_transacao: '79'
+  item_quant_1: '1'
+  item_id_1: '1'
   item_descr_1: TV Plasma 42'
-  item_valor_1: "300000"
+  item_valor_1: '300000'
   commit: Efetuar pagamento!
-"97": !map:ActiveSupport::HashWithIndifferentAccess 
+'97':
   email_cobranca: diegosax@terra.com.br
   tipo: CP
   moeda: BRL
-  ref_transacao: "97"
-  item_quant_1: "2"
-  item_id_1: "1"
+  ref_transacao: '97'
+  item_quant_1: '2'
+  item_id_1: '1'
   item_descr_1: TV Plasma 42'
-  item_valor_1: "300000"
-  item_quant_2: "1"
-  item_id_2: "6"
+  item_valor_1: '300000'
+  item_quant_2: '1'
+  item_id_2: '6'
   item_descr_2: tttt
-  item_valor_2: "3200"
+  item_valor_2: '3200'
   commit: Efetuar pagamento!
-"101": !map:ActiveSupport::HashWithIndifferentAccess 
+'101':
   email_cobranca: diegosax@terra.com.br
   tipo: CP
   moeda: BRL
-  ref_transacao: "101"
-  item_quant_1: "1"
-  item_id_1: "2"
+  ref_transacao: '101'
+  item_quant_1: '1'
+  item_id_1: '2'
   item_descr_1: Sofa Cama
-  item_valor_1: "160000"
+  item_valor_1: '160000'
   commit: Efetuar pagamento!
-~: !map:ActiveSupport::HashWithIndifferentAccess {}
-
-"112": !map:ActiveSupport::HashWithIndifferentAccess 
+!!null '': {}
+'112':
   email_cobranca: unicap@unicap.com
   tipo: CP
   moeda: BRL
-  ref_transacao: "112"
-  item_quant_1: "1"
-  item_id_1: "8"
+  ref_transacao: '112'
+  item_quant_1: '1'
+  item_id_1: '8'
   item_descr_1: Aula Extra
-  item_valor_1: "5000"
+  item_valor_1: '5000'
+  commit: Efetuar pagamento!
+'4':
+  email_cobranca: diegosax@terra.com.br
+  tipo: CP
+  moeda: BRL
+  ref_transacao: '4'
+  commit: Efetuar pagamento!
+'5':
+  email_cobranca: diegosax@terra.com.br
+  tipo: CP
+  moeda: BRL
+  ref_transacao: '5'
+  item_quant_1: '1'
+  item_id_1: '3'
+  item_descr_1: Sofa de Canto
+  item_valor_1: '12000'
+  item_quant_2: '1'
+  item_id_2: '2'
+  item_descr_2: Laptop Vaio
+  item_valor_2: '10000'
+  item_quant_3: '2'
+  item_id_3: '4'
+  item_descr_3: ! 'Livro: Harry Potter'
+  item_valor_3: '2700'
+  item_quant_4: '2'
+  item_id_4: '5'
+  item_descr_4: CD Virgem
+  item_valor_4: '23'
+  commit: Efetuar pagamento!
+'6':
+  email_cobranca: diegosax@terra.com.br
+  tipo: CP
+  moeda: BRL
+  ref_transacao: '6'
+  commit: Efetuar pagamento!
+'7':
+  email_cobranca: diegosax@terra.com.br
+  tipo: CP
+  moeda: BRL
+  ref_transacao: '7'
+  item_quant_1: '1'
+  item_id_1: '2'
+  item_descr_1: Laptop Vaio
+  item_valor_1: '10000'
+  item_quant_2: '1'
+  item_id_2: '3'
+  item_descr_2: Sofa de Canto
+  item_valor_2: '12000'
+  item_quant_3: '3'
+  item_id_3: '4'
+  item_descr_3: ! 'Livro: Harry Potter'
+  item_valor_3: '2700'
   commit: Efetuar pagamento!

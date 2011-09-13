@@ -10,7 +10,7 @@ class Admin::OrdersController < ApplicationController
     end
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # application.html.erb
       format.xml  { render :xml => @orders }
     end
   end
