@@ -20,6 +20,7 @@ class Moip
       puts "PASSOU"
 
       raise(StandardError, "Webservice can't be reached") if response.nil?
+      puts "Exibindo o valor do response: #{response.inspect}"
       response = response["ns1:EnviarInstrucaoUnicaResponse"]["Resposta"]
       raise(StandardError, response["Erro"]) if response["Status"] == "Falha"
       response
@@ -42,10 +43,10 @@ class Moip
 
   protected
     # você pode adicionar mais campos da API do MoIP aqui a medida que seus
-    # exemplos forem se tornando mais complexos. 
+    # exemplos forem se tornando mais complexos.
     def mount_request(order,current_user)
       #reason, id, value = attributes[:reason], attributes[:id], attributes[:value]
-      
+
       endereco = order.address
 
       puts endereco.address
@@ -85,3 +86,4 @@ class Moip
   end
 
 end
+

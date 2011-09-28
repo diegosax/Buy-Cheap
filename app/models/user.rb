@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
 
   def format_telephone
     self.telephone = self.telephone.gsub(/(\d{2})(\d{4})(\d{4})/, '(\1)\2-\3') || self.telephone if telephone
+    puts "Telefone Formatado: #{self.telephone}"
   end
 
   def format_celphone
@@ -44,3 +45,4 @@ class User < ActiveRecord::Base
 
 
 end
+
