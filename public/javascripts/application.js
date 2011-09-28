@@ -42,6 +42,7 @@ $(document).ready(function(){
 
     $("#customer_telephone").mask("(99)9999-9999");
     $("#customer_celphone").mask("(99)9999-9999");
+    $("#customer_birthdate").mask("99/99/9999");
 
     //ao soltar a tecla dentro do campo de cep ele verifica se possui 8 digitos e chama um posto para preenchimento do cep
     $("#cep_load").keyup(function(e){
