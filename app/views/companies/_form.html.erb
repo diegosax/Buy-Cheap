@@ -73,6 +73,15 @@
         </div>
 
         <div class="s_row_2 clearfix">
+          <strong>Endereços: </strong>
+          <% f.fields_for :addresses do |builder| %>
+            <%= render 'address', :f => builder%>
+          <%end%>  
+        </div>
+        <!--<%=link_to "Adicione mais um endereço.", "#", :id => "add_a_other_company_address"%>-->
+
+
+        <div class="s_row_2 clearfix">
           <label class="required">
             <strong>
               Senha

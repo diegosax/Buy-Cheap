@@ -21,7 +21,15 @@
               <h3>
                 <%=link_to company.name, company%>
               </h3>
-              <p class="s_model"><%=company.address.city if company.address%></p>
+              <p class="s_model">
+              
+                <% if company.addresses %>
+                  <% company.addresses.each do |ad| %>
+                    <%= ad.city %>
+                  <%end%>
+                <%end%>
+                
+              </p>
               <p class="s_description">
 
               </p>

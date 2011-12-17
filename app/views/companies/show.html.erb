@@ -19,7 +19,12 @@
           <dt>Empresa</dt>
           <dd><%=@company.name%></dd>
           <dt>Cidade</dt>
-          <dd><%=@company.address.city if @company.address%></dd>
+          <dd><% if @company.addresses %>
+                  <% @company.addresses.each do |ad| %>
+                    <%= ad.city %>
+                  <%end%>
+              <%end%>    
+          </dd>
           <dt>Ofertas ativas</dt>
           <dd><%=@company.available_offers%></dd>
         </dl>
