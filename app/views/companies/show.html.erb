@@ -5,6 +5,7 @@
         Visualizando ofertas de
       </div>
       <h1><%=@company.name%><%=link_to "Mudar Empresa", companies_url%> <span>|</span> <%=link_to "Visualizar todas as ofertas do site", root_url%></h1>
+  
       </div>
     </div>
   </div>
@@ -18,6 +19,8 @@
         <dl class="clearfix">
           <dt>Empresa</dt>
           <dd><%=@company.name%></dd>
+          <dt>e-mail: </dt>
+          <dd><%=@company.email%></dd>
           <dt>Cidade</dt>
           <dd><% if @company.addresses %>
                   <% @company.addresses.each do |ad| %>
