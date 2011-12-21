@@ -42,25 +42,41 @@
       <div class="clear"></div>
     </div>
 
-  <div id="latest_home" class="s_grid_view">
+  <div id="bestseller" class="s_grid_view">
     <h2 class="s_title_1"><span class="s_main_color">Mais</span> Vendidos</h2>
     <div class="clear"></div>
     <div class="s_listing s_grid_view clearfix">
-      <%@products.each do |product|%>
-          <div class="s_item grid_2"> <a class="s_thumb" href="product.html"><%=image_tag product.image.to_s%></a>
-            <h3>
-              <%=link_to product.name, product%>
-            </h3>
-            <p class="s_model">
-              <%=link_to product.company.name, product.company %>
-            </p>
-            <p class="s_price">
-              <span class="s_currency s_before">R$</span><%=product.price%></p>
-            <%=link_to line_items_path(:product_id => product),:method => :post, :class => "s_button_add_to_cart" do%>
-                <span class="s_icon_16"><span class="s_icon"></span>Adicionar ao carrinho</span>
-            <%end%>
-          </div>
-      <%end%>
+      <%cont = 0%>
+            <%@products = most_sold_products%>
+            <% @products.each do |product|%>
+                  <div class="s_item grid_2">
+                    <%=link_to product, :class => "s_thumb" do%>
+                        <%=image_tag product.image.to_s%>
+                    <%end%>
+                    <h3>
+                      <%=link_to product.name, product%>
+                    </h3>
+                    <p class="s_model">
+                      <%=link_to product.company.name, product.company %>
+                    </p>
+                    <p class="s_currency s_old s_model">
+                      De: <%=valor_formatado product.original_price%>
+                    </p>
+                    <p class="s_after">
+                      Por: <%=valor_formatado product.price%>
+                    </p>
+                    <p class="s_price">
+                      <span class="s_currency s_before"></span><%=percentagem_desconto product.original_price, product.price%>%</p>
+                    <%=link_to line_items_path(:product_id => product),:method => :post, :class => "s_button_add_to_cart" do%>
+                        <span class="s_icon_16"><span class="s_icon"></span>Adicionar ao carrinho</span>
+                    <%end%>
+                  </div>
+                  <%cont = cont + 1%>
+                  <%if cont == 4%>
+                      <div class="clear"></div>
+                        <%cont = 0%>
+                  <%end%>
+          <%end%>
       <div class="clear"></div>
     </div>
   </div>
