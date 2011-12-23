@@ -1,6 +1,10 @@
 /* 
-*= require_self 
-*= require_tree . 
+*= require 960
+*= require screen
+*= require prettyLoader
+*= require prettyPhoto
+*= require color
+*= require_self
 */  
   
 

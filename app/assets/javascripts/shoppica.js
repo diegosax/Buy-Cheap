@@ -23,7 +23,7 @@ jQuery( function($) {
       );
     }
   );
-
+/*
   if (!$.browser.msie || parseInt($.browser.version, 10) > 8) {
       var onMouseOutOpacity = 1;
       $('div.s_listing > div.s_item').css('opacity', onMouseOutOpacity)
@@ -38,7 +38,7 @@ jQuery( function($) {
           }
       );
   }
-
+*/
   // Hover effect for the shoppica cart
   $("#cart_menu").hover(
     function() {

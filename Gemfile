@@ -33,6 +33,8 @@ gem 'activemerchant'
 
 gem "rmagick"
 
+gem "will_paginate"
+
 
 # Use unicorn as the web server
 # gem 'unicorn'
