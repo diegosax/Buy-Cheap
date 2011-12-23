@@ -132,7 +132,7 @@
 
     <% @related_products.each do |product| %>
     <div class="s_item grid_2" style="opacity: 1; "> 
-      <% link_to product, :class => "s_thumb" do%>
+      <%= link_to product, :class => "s_thumb" do%>
         <%= image_tag product.image.to_s%>
       <%end%>
       <h3>
