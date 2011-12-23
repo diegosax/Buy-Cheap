@@ -1,0 +1,14 @@
+<% unless flash[:alert].nil? %>  
+    <div class="error message">
+        <h3>Ocorreu um erro!</h3>
+        <p>
+        	<%=flash[:alert]%>
+        </p>
+	</div>      
+<% end %> 
+
+<% unless flash[:notice].nil? %>  
+    <div class="success message">
+        <h3><%=flash[:notice]%></h3>        	        
+	</div>      
+<% end %>

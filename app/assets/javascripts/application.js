@@ -81,7 +81,13 @@ $(document).ready(function(){
     function showMessage(type)
     {
         hideAllMessages();
-        $('.'+type).animate({top:"0"}, 500).delay(4000).fadeOut('slow');;              
+        $('.'+type).animate({top:"0"}, 500);
+        setTimeout(
+            function(){
+                $('.'+type).animate({top: -$('.'+type).outerHeight()}, 500);
+            },
+            4000
+        );              
     }
 
     // Initially, hide them all

@@ -1,0 +1,18 @@
+<div id="bestseller_side" class="s_box grid_3">
+  <h2>Últimos Anunciados</h2>
+  <%@latest_products.each do |product|%>
+    <div class="s_item s_size_1 clearfix">
+      <%=link_to product, :class => "s_thumb" do%>
+        <%=image_tag product.image_url, :width => 38, :height => 38, :alt => product.name%>
+      <%end%>        
+      <h3><%=link_to product.name, product%></h3>
+      <p>
+        <%=link_to product do%>
+          <span class="s_main_color">
+            <%=valor_formatado product.price%>
+          </span>
+        <%end%>
+      </p>
+    </div>      
+  <% end %>  
+</div>
