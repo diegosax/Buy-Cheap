@@ -2550,3 +2550,9 @@ span.current_discount{
     background-color: #ff8429;
     color: #ffffff;
 }
+
+span.see_more a{
+    font-size: 14px;
+    color: #F12B63;
+    margin-left: 15px;
+}
