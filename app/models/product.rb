@@ -22,6 +22,7 @@ class Product < ActiveRecord::Base
   #UPLOAD DE IMAGENS
   #attr_accessor :image_file_name
 
+
   def self.search(category = nil, discount = nil, query = nil)
     discount = discount.to_i
     discount = 20 if discount == nil || discount < 20 || discount >=100

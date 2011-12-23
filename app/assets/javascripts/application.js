@@ -108,4 +108,6 @@ $(document).ready(function(){
         $(this).animate({top: -$(this).outerHeight()}, 500);
     });  
 
+    //adicionando mais de 1 endereço pra uma empresa.
+
 });
