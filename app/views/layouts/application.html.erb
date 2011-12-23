@@ -59,12 +59,7 @@
   </div>
 </div>
 <!-- end of header -->
-
-
-<% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, :id => "flash#{name}" %>
-<% end %>
-
+<%=render "/utils/flash_messages"%>
 <%=yield%>
 <!-- ********************** -->
 <!--   S H O P   I N F O    -->

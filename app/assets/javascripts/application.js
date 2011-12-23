@@ -65,6 +65,41 @@ $(document).ready(function(){
             e.preventDefault();
         }
     });
-    //-----------------------------------------------------------------
+
+    //----------------Notification Messages-----------------------//
+    var myMessages = ['info','warning','error','success'];
+    function hideAllMessages()
+    {
+        var messagesHeights = new Array(); // this array will store height for each
+        for (i=0; i<myMessages.length; i++)
+        {
+            messagesHeights[i] = $('.' + myMessages[i]).outerHeight(); // fill array
+            $('.' + myMessages[i]).css('top', -messagesHeights[i]); //move element outside viewport
+        }
+    }
+
+    function showMessage(type)
+    {
+        hideAllMessages();
+        $('.'+type).animate({top:"0"}, 500).delay(4000).fadeOut('slow');;              
+    }
+
+    // Initially, hide them all
+    hideAllMessages();
+    // Show message
+    var sizeErrors = $('.error').length;
+    if (sizeErrors > 0){
+        showMessage('error');
+    }
+
+    var sizeSuccess = $('.success').length;
+    if (sizeSuccess > 0){
+        showMessage('success');
+    }
+        
+       // When message is clicked, hide it
+    $('.message').click(function(){
+        $(this).animate({top: -$(this).outerHeight()}, 500);
+    });  
 
 });
