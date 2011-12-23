@@ -273,7 +273,7 @@ h2.s_title_1 {
 /******   bulleted lists   ***************************/
 .s_list_1 li {
     padding-left: 15px;
-    background-image: url(../images/bullet_1.png);
+    background-image: url(/assets/bullet_1.png);
     background-repeat: no-repeat;
     background-position: 0 -3px;
 }
@@ -342,11 +342,11 @@ h2.s_title_1 {
 }
 .s_rating {
     margin-right: 3px;
-    background: url(../images/i_star_gray_16.png) repeat-x top left;
+    background: url(/assets/i_star_gray_16.png) repeat-x top left;
 }
 .s_rating .s_percent {
     float: left;
-    background: url(../images/i_star_16.png) repeat-x top left;
+    background: url(/assets/i_star_16.png) repeat-x top left;
 }
 .s_rating_big,
 .s_rating_big .s_percent
@@ -361,10 +361,10 @@ h2.s_title_1 {
     width: 125px;
 }
 .s_rating_big {
-    background: url(../images/i_star_gray_24.png) repeat-x top left;
+    background: url(/assets/i_star_gray_24.png) repeat-x top left;
 }
 .s_rating_big .s_percent {
-    background: url(../images/i_star_24.png) repeat-x top left;
+    background: url(/assets/i_star_24.png) repeat-x top left;
 }
 .s_rating_small,
 .s_rating_small .s_percent
@@ -379,10 +379,10 @@ h2.s_title_1 {
     width: 50px;
 }
 .s_rating_small {
-    background: url(../images/i_star_gray_10.png) repeat-x top left;
+    background: url(/assets/i_star_gray_10.png) repeat-x top left;
 }
 .s_rating_small .s_percent {
-    background: url(../images/i_star_10.png) repeat-x top left;
+    background: url(/assets/i_star_10.png) repeat-x top left;
 }
 
 
@@ -772,40 +772,31 @@ label.s_radio
 
 /******   pagination   *******************************/
 .pagination {
-    clear: both;
-    height: 24px;
-    padding: 20px 0 30px 0;
-    line-height: 24px;
-    border-top: 1px solid #ddd;
-}
-.pagination .links {
-    float: left;
-    height: 24px;
-}
-.pagination .results {
-    float: right;
-    height: 24px;
-    font-size: 12px;
-    color: #999;
-}
-.pagination a,
-.pagination b
-{
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    text-align: center;
-}
-.pagination a {
-    font-size: 12px;
-    color: #666;
-    background: #eee;
-}
-.pagination .links a:hover,
-#content .pagination .links a:hover
-{
-    color: #fff !important;
-}
+  text-align: center;
+  padding: 0.3em;
+  cursor: default; }
+  .pagination a, .pagination span, .pagination em {
+    padding: 0.2em 0.5em; }
+  .pagination .disabled {
+    color: #aaaaaa; }
+  .pagination .current {
+    font-style: normal;
+    font-weight: bold;
+    color: #ff0084; }
+  .pagination a {
+    border: 1px solid #dddddd;
+    color: #0063dc;
+    text-decoration: none; }
+  .pagination .page_info {
+    color: #aaaaaa;
+    padding-top: 0.8em; }
+  .pagination .previous_page, .pagination .next_page {
+    border-width: 2px; }
+  .pagination .previous_page {
+    margin-right: 1em; }
+  .pagination .next_page {
+    margin-left: 1em; }
+
 
 /******   dropdown   *********************************/
 .s_switcher {
@@ -813,7 +804,7 @@ label.s_radio
     position: absolute;
     padding-right: 22px;
     font-size: 11px;
-    background: #f6f6f6 url(../images/dropdown.gif) no-repeat 100% 6px;
+    background: #f6f6f6 url(/assets/dropdown.gif) no-repeat 100% 6px;
     border-top: 1px solid #e9e9e9;
     border-left: 1px solid #e9e9e9;
     border-right: 1px solid #f6f6f6;
@@ -918,6 +909,13 @@ label.s_radio
     display: none !important;
 }
 
+.s_listing .company_item{
+    width:47%;
+}
+
+.s_listing .company_item_inner{
+    width: 45%;
+}
 
 .s_item {
     position: relative;
@@ -954,7 +952,7 @@ label.s_radio
     padding-left: 22px !important;
 }
 .s_item .s_button_add_to_cart .s_icon {
-    background: url(../images/add_to_cart.png) no-repeat center transparent;
+    background: url(/assets/add_to_cart.png) no-repeat center transparent;
 }
 .s_item .s_description {
     margin-bottom: 10px;
@@ -1026,7 +1024,7 @@ label.s_radio
     height: 42px;
     padding-top: 24px;
     font-size: 20px;
-    background-image: url(../images/price_1.png);
+    background-image: url(/assets/price_1.png);
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -1076,7 +1074,7 @@ label.s_radio
     padding-top: 32px;
     text-indent: -3px;
     font-size: 24px;
-    background-image: url(../images/price_4.png);
+    background-image: url(/assets/price_4.png);
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -1220,7 +1218,7 @@ label.s_radio
     display: block;
     width: 11px;
     height: 11px;
-    background-image: url(../images/button_remove_10.png);
+    background-image: url(/assets/button_remove_10.png);
     background-position: 0 0;
     background-repeat: no-repeat;
     background-color: #ccc;
@@ -1425,7 +1423,7 @@ body.s_layout_fixed #wrapper {
     height: 60px;
     margin: 30px 10px 30px 0;
     text-indent: -1000em;
-    background: url(../images/shoppica_logo.png) no-repeat center;
+    background: url(/assets/shoppica_logo.png) no-repeat center;
 }
 
 #language_switcher,
@@ -1511,7 +1509,7 @@ body.s_layout_fixed #wrapper {
     display: block;
     width: 32px;
     height: 32px;
-    background-image: url(../images/icon_search.png);
+    background-image: url(/assets/icon_search.png);
     background-repeat: no-repeat;
     background-position: center top;
 }
@@ -1625,7 +1623,7 @@ body.s_layout_fixed #wrapper {
 }
 #menu_home a {
     text-indent: -1000em;
-    background-image: url(../images/menu_home.png);
+    background-image: url(/assets/menu_home.png);
     background-repeat: no-repeat;
     background-position: center;
     background-color: #ddd;
@@ -1658,7 +1656,7 @@ body.s_layout_fixed #wrapper {
     display: block;
     width: 23px;
     height: 23px;
-    background-image: url(../images/i_cart.png);
+    background-image: url(/assets/i_cart.png);
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -1703,12 +1701,12 @@ body.s_layout_fixed #wrapper {
     clear: both;
     margin-bottom: 24px;
     padding-top: 30px;
-    background: url(../images/intro.png) top left repeat-x;
-    background: url(../images/intro.png) top left repeat-x, url(../images/intro_texture.png) center no-repeat;
+    background: url(/assets/intro.png) top left repeat-x;
+    background: url(/assets/intro.png) top left repeat-x, url(/assets/intro_texture.png) center no-repeat;
     background-color: #f2eddc;
 }
 #intro_wrap {
-    background: url(../images/intro.png) bottom left repeat-x;
+    background: url(/assets/intro.png) bottom left repeat-x;
 }
 #intro_wrap .container_12 {
     z-index: 5;
@@ -1757,7 +1755,7 @@ body.s_layout_fixed #wrapper {
     right: 10px;
     width: 445px;
     height: 370px;
-    background: url(../images/intro_product.png) no-repeat top right;
+    background: url(/assets/intro_product.png) no-repeat top right;
 }
 #product_intro_preview > img,
 #product_intro_preview .slides_container
@@ -1773,7 +1771,7 @@ body.s_layout_fixed #wrapper {
     display: block;
     width: 42px;
     height: 42px;
-    background-image: url(../images/intro_controls.png);
+    background-image: url(/assets/intro_controls.png);
     background-repeat: no-repeat;
 }
 #intro .s_button_prev {background-position: 0 0;}
@@ -1807,7 +1805,7 @@ body.s_layout_fixed #wrapper {
     height: 60px;
     padding-top: 40px;
     font-size: 28px;
-    background-image: url(../images/price_3.png);
+    background-image: url(/assets/price_3.png);
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -1863,7 +1861,7 @@ body.s_layout_fixed #wrapper {
 {
     width: 24px;
     height: 24px;
-    background-image: url(../images/intro_controls_small.png) !important;
+    background-image: url(/assets/intro_controls_small.png) !important;
 }
 #image_intro_preview .s_button_next_holder {
     right: -15px;
@@ -1929,7 +1927,7 @@ body.s_layout_fixed #wrapper {
     display: block;
     width: 11px;
     height: 11px;
-    background: transparent url(../images/view_mode.gif) no-repeat;
+    background: transparent url(/assets/view_mode.gif) no-repeat;
     background-color: #ddd;
 }
 #view_mode a:hover .s_icon {background-color: #f12b63;}
@@ -2074,7 +2072,7 @@ body.s_layout_fixed #wrapper {
     display: block;
     width: 23px;
     height: 23px;
-    background-image: url(../images/i_cart_white.png);
+    background-image: url(/assets/i_cart_white.png);
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -2155,7 +2153,7 @@ body.s_layout_fixed #wrapper {
     line-height: 19px;
     white-space: nowrap;
     font-size: 11px;
-    background: url(../images/tag.png) no-repeat center left;
+    background: url(/assets/tag.png) no-repeat center left;
 }
 
 #login_page,
@@ -2249,7 +2247,7 @@ body.s_layout_fixed #wrapper {
     right: 20px;
     width: 120px;
     height: 75px;
-    background-image: url(../images/contact_form_icon.png);
+    background-image: url(/assets/contact_form_icon.png);
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -2307,11 +2305,11 @@ body.s_layout_fixed #wrapper {
     padding: 19px 0 0 0;
     font-size: 11px;
     color: #555;
-    background: url(../images/shop_info.gif) repeat-x top left;
+    background: url(/assets/shop_info.gif) repeat-x top left;
 }
 #shop_info_wrap {
     padding: 0 0 28px 0;
-    background: url(../images/shop_info.gif) repeat-x bottom left;
+    background: url(/assets/shop_info.gif) repeat-x bottom left;
 }
 #shop_info h2 {
     margin-bottom: 14px;
@@ -2322,7 +2320,7 @@ body.s_layout_fixed #wrapper {
 #shop_description {font-size: 11px;}
 #shop_description h2 {
     text-indent: 30px;
-    background: url(../images/i_cart_24.png) no-repeat -1px 7px;
+    background: url(/assets/i_cart_24.png) no-repeat -1px 7px;
 }
 #shop_description p {margin-right: 10px;}
 .s_phone_32,
@@ -2331,7 +2329,7 @@ body.s_layout_fixed #wrapper {
 .s_mail_32,
 .s_skype_32
 {
-    background-image: url(../images/info_icons.png);
+    background-image: url(/assets/info_icons.png);
     background-color: #4cb1ca;
 }
 .s_phone_32 {background-position: 0 0 !important;}
@@ -2341,12 +2339,12 @@ body.s_layout_fixed #wrapper {
 .s_fax_32 {background-position: 0 -128px !important;}
 #twitter h2 {
     text-indent: 30px;
-    background: url(../images/i_twitter_24.png) no-repeat 0 8px;
+    background: url(/assets/i_twitter_24.png) no-repeat 0 8px;
 }
 #twitter li {
     margin-bottom: 18px;
     padding-left: 30px;
-    background: url(../images/quotes.png) no-repeat 0 4px;
+    background: url(/assets/quotes.png) no-repeat 0 4px;
 }
 #twitter li a {
     display: block;
@@ -2381,7 +2379,7 @@ body.s_layout_fixed #wrapper {
 
 #facebook h2 {
     text-indent: 30px;
-    background: url(../images/i_facebook_24.png) no-repeat 0 8px;
+    background: url(/assets/i_facebook_24.png) no-repeat 0 8px;
 }
 #facebook .s_widget_holder {
     margin-top: -46px;
@@ -2394,7 +2392,7 @@ body.s_layout_fixed #wrapper {
 }
 #shop_contacts h2 {
     text-indent: 30px;
-    background: url(../images/i_contacts_24.png) no-repeat 0 8px;
+    background: url(/assets/i_contacts_24.png) no-repeat 0 8px;
 }
 #shop_contacts td {
     height: 52px;
@@ -2551,4 +2549,108 @@ span.discount_button:hover{
 span.current_discount{
     background-color: #ff8429;
     color: #ffffff;
+}
+
+span.see_more a{
+    font-size: 14px;
+    color: #F12B63;
+    margin-left: 15px;
+}
+
+/*
+    ----------------- Flash Messages ------------------------
+*/
+
+.message
+{
+    -webkit-background-size: 40px 40px;
+    -moz-background-size: 40px 40px;
+    background-size: 40px 40px;
+    background-image: -webkit-gradient(linear, left top, right bottom,
+                                            color-stop(.25, rgba(255, 255, 255, .05)), color-stop(.25, transparent),
+                                            color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .05)),
+                                            color-stop(.75, rgba(255, 255, 255, .05)), color-stop(.75, transparent),
+                                            to(transparent));
+    background-image: -webkit-linear-gradient(135deg, rgba(255, 255, 255, .05) 25%, transparent 25%,
+                                            transparent 50%, rgba(255, 255, 255, .05) 50%, rgba(255, 255, 255, .05) 75%,
+                                            transparent 75%, transparent);
+    background-image: -moz-linear-gradient(135deg, rgba(255, 255, 255, .05) 25%, transparent 25%,
+                                            transparent 50%, rgba(255, 255, 255, .05) 50%, rgba(255, 255, 255, .05) 75%,
+                                            transparent 75%, transparent);
+    background-image: -ms-linear-gradient(135deg, rgba(255, 255, 255, .05) 25%, transparent 25%,
+                                            transparent 50%, rgba(255, 255, 255, .05) 50%, rgba(255, 255, 255, .05) 75%,
+                                            transparent 75%, transparent);
+    background-image: -o-linear-gradient(135deg, rgba(255, 255, 255, .05) 25%, transparent 25%,
+                                            transparent 50%, rgba(255, 255, 255, .05) 50%, rgba(255, 255, 255, .05) 75%,
+                                            transparent 75%, transparent);
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, .05) 25%, transparent 25%,
+                                            transparent 50%, rgba(255, 255, 255, .05) 50%, rgba(255, 255, 255, .05) 75%,
+                                            transparent 75%, transparent);
+    -moz-box-shadow: inset 0 -1px 0 rgba(255,255,255,.4);
+    -webkit-box-shadow: inset 0 -1px 0 rgba(255,255,255,.4);
+    box-shadow: inset 0 -1px 0 rgba(255,255,255,.4);
+    width: 100%;
+    border: 1px solid;
+    color: #fff;
+    padding: 15px;
+    position: fixed;
+    _position: absolute;
+    text-shadow: 0 1px 0 rgba(0,0,0,.5);
+    -webkit-animation: animate-bg 5s linear infinite;
+    -moz-animation: animate-bg 5s linear infinite;
+    z-index:999;
+}
+
+.info
+{
+                 background-color: #4ea5cd;
+                 border-color: #3b8eb5;
+}
+
+.error
+{
+                 background-color: #de4343;
+                 border-color: #c43d3d;
+}
+
+.warning
+{
+                 background-color: #eaaf51;
+                 border-color: #d99a36;
+}
+
+.success
+{
+                 background-color: #61b832;
+                 border-color: #55a12c;
+}
+
+.message h3
+{
+                 margin: 0 0 5px 0;
+}
+
+.message p
+{
+                 margin: 0;
+}
+
+@-webkit-keyframes animate-bg
+{
+    from {
+        background-position: 0 0;
+    }
+    to {
+       background-position: -80px 0;
+    }
+}
+
+@-moz-keyframes animate-bg
+{
+    from {
+        background-position: 0 0;
+    }
+    to {
+       background-position: -80px 0;
+    }
 }

@@ -10,14 +10,14 @@
 
       <%@companies.each do |company|%>
 
-          <div class="s_item clearfix" style="opacity: 1; ">
+          <div class="s_item grid_6 company_item" style="opacity: 1; ">
             <div class="grid_3 alpha">
               <%=link_to company do%>
                   <%=image_tag(company.image_url)%>
               <%end%>
             </div>
 
-            <div class="grid_9 omega">
+            <div class="grid_3 omega company_item_inner">
               <h3>
                 <%=link_to company.name, company%>
               </h3>
@@ -38,12 +38,13 @@
 
 
 
-      <div class="clear" style="opacity: 1; "></div>
       <%end%>
     </div>
 
     <div class="pagination">
-      <div class="results">Showing 1 to 6 of 6 (1 Pages)</div>
+      <div class="results">
+        <%=will_paginate @companies%>
+      </div>
     </div>
 
   </div>

@@ -1,0 +1,14 @@
+/* 
+*= require 960
+*= require screen
+*= require prettyLoader
+*= require prettyPhoto
+*= require color
+*= require_self
+*/  
+  
+
+.grid_fluid_100{
+	width:100%;
+	padding: 0 auto;
+}

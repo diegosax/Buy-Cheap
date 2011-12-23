@@ -121,12 +121,15 @@
   </div>
 </div>
 
-<% @related_products = related_products_from_a_company(@product.company_id).take(6) %>
+
+<% @related_products = related_products_from_a_company(@product.company_id) %>
+
 
 <div id="related_products" class="grid_12 alpha omega">
   <h2 class="s_title_1"><span class="s_main_color">Mais</span> Ofertas da <%= @product.company.name %></h2>
   <div class="clear"></div>
   <div class="s_grid_view s_listing clearfix">
+
     <% @related_products.each do |product| %>
     <div class="s_item grid_2" style="opacity: 1; "> 
       <% link_to product, :class => "s_thumb" do%>
@@ -150,6 +153,7 @@
         <span class="s_icon_16"><span class="s_icon"></span>Adicionar ao carrinho</span>
       <%end%>
       
+
     </div>
     <%end%><!--end related products-->
     

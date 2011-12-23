@@ -13,6 +13,8 @@ class Product < ActiveRecord::Base
   validates :price, :numericality => true
   validates :name, :uniqueness => true
   scope :available, where("available_on <= ?", DateTime.now )
+  scope :latest, order("created_at DESC").limit(10)
+  scope :greatest, order("((1 - price/original_price) * 100) DESC").limit(12)
   mount_uploader :image, ImageUploader
   #UPLOAD DE IMAGENS
   #has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }
@@ -20,7 +22,6 @@ class Product < ActiveRecord::Base
   #UPLOAD DE IMAGENS
   #attr_accessor :image_file_name
 
- 
 
   def self.search(category = nil, discount = nil, query = nil)
     discount = discount.to_i

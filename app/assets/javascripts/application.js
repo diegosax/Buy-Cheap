@@ -1,3 +1,13 @@
+//= require jquery  
+//= require jquery_ujs  
+//= require jquery-ui-1.8.14.custom.min
+//= require jquery.prettyPhoto
+//= require shoppica
+//= require jquery.maskedinput-1.3.min
+//= require_self  
+
+
+
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 $(document).ready(function(){
@@ -55,7 +65,42 @@ $(document).ready(function(){
             e.preventDefault();
         }
     });
-    //-----------------------------------------------------------------
+
+    //----------------Notification Messages-----------------------//
+    var myMessages = ['info','warning','error','success'];
+    function hideAllMessages()
+    {
+        var messagesHeights = new Array(); // this array will store height for each
+        for (i=0; i<myMessages.length; i++)
+        {
+            messagesHeights[i] = $('.' + myMessages[i]).outerHeight(); // fill array
+            $('.' + myMessages[i]).css('top', -messagesHeights[i]); //move element outside viewport
+        }
+    }
+
+    function showMessage(type)
+    {
+        hideAllMessages();
+        $('.'+type).animate({top:"0"}, 500).delay(4000).fadeOut('slow');;              
+    }
+
+    // Initially, hide them all
+    hideAllMessages();
+    // Show message
+    var sizeErrors = $('.error').length;
+    if (sizeErrors > 0){
+        showMessage('error');
+    }
+
+    var sizeSuccess = $('.success').length;
+    if (sizeSuccess > 0){
+        showMessage('success');
+    }
+        
+       // When message is clicked, hide it
+    $('.message').click(function(){
+        $(this).animate({top: -$(this).outerHeight()}, 500);
+    });  
 
     //adicionando mais de 1 endereço pra uma empresa.
 

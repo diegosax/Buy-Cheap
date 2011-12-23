@@ -3,7 +3,7 @@
 class ImageUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or ImageScience support:
-  include CarrierWave::RMagick
+  #include CarrierWave::RMagick
   # include CarrierWave::ImageScience
 
   # Choose what kind of storage to use for this uploader:
@@ -18,7 +18,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
    def default_url
-     "/images/fallback/" + [version_name, "logotipo_indisponivel.jpg"].compact.join('_')
+     "/assets/fallback/" + [version_name, "logotipo_indisponivel.jpg"].compact.join('_')
    end
 
   # Process files as they are uploaded:
@@ -34,11 +34,11 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
   version :thumb do
-    process :scale => [50, 50]
+    #process :scale => [50, 50]
   end
 
   version :details do
-    process :scale => [300,300]
+    #process :scale => [300,300]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
