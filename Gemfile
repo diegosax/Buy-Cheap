@@ -35,6 +35,7 @@ gem "rmagick"
 
 gem "will_paginate"
 
+gem "pg"
 
 # Use unicorn as the web server
 # gem 'unicorn'
