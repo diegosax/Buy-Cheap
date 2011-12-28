@@ -48,7 +48,7 @@ Buycheap::Application.configure do
   config.active_support.deprecation = :notify
 
   # Compress JavaScript and CSS  
-  config.assets.compress = true  
+  config.assets.compress = false  
        
   # Don't fallback to assets pipeline  
   config.assets.compile = true  
