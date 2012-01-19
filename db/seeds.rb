@@ -46,6 +46,8 @@ lilah = Company.find_by_email("lilah@lilah.com")
 f5filmes = Company.find_by_email("f5filmes@f5filmes.com")
 rhf = Company.find_by_email("rhf@rhf.com")
 
+puts submarino
+
 submarino.products.create(
   :name=> "HD Externo 1TB Hitachi",
   :short_description => "Capacidade aproximada para: 230 mil arquivos em MP3, ou 400 mil imagens de 5 megapixels ou 2.600 horas de vídeo.",

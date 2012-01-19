@@ -4,7 +4,7 @@ class Company < User
   has_many :addresses , :foreign_key => :customer_id
   
   validates_presence_of :document, :razao_social, :name
-  validates_uniqueness_of :document, :razao_social
+  #validates_uniqueness_of :document, :razao_social
   #usar_como_cnpj :document
   
   validates :email,

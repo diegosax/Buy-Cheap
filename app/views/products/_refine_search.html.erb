@@ -1,0 +1,20 @@
+<div id="sidebar">
+    <div class="widget">            
+      <div class="facets">  
+          <h3>Companies</h3>  
+          <ul>  
+            <% @products.facets[:company_id].each do |option,count| %>                
+              <%company = Company.find(option)%>
+              <li>
+                <% if params[:company_id].blank? %>  
+                  <%puts company.inspect%>
+                  <%= link_to company.name, params.merge(:company_id => company.id) %> (<%= count %>)  
+                <% else %>  
+                  <strong><%= company.name %></strong> (<%= link_to "remover", params.merge(:company_id => nil) %>)  
+                <% end %>  
+              </li>  
+            <% end %>  
+          </ul>  
+        </div>        
+  </div>
+<div>

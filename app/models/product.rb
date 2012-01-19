@@ -22,17 +22,39 @@ class Product < ActiveRecord::Base
   #UPLOAD DE IMAGENS
   #attr_accessor :image_file_name
 
+  acts_as_taggable
 
-  def self.search(category = nil, discount = nil, query = nil)
-    discount = discount.to_i
-    discount = 20 if discount == nil || discount < 20 || discount >=100
-    if category
-      where("(1 - price/original_price) * 100 >= ? and category_id = ?",discount, category)
-    else
-      where("(1 - price/original_price) * 100 >= ? ",discount)
-    end
+  define_index do
+    indexes :name, :sortable => true
+    indexes short_description
+    indexes description      
+    indexes category.name, :as => :category_name
+    
+    indexes tags.name, :as => :tag_name, :facet => true
+    
+    #TODO: add the where filter: where "status = 'active'"        
 
-  end
+    has company_id, category_id, updated_at, created_at, :facet => true
+
+    set_property :field_weights => {
+      :name => 10,
+      :short_description  => 8,
+      :tag_name => 7,
+      :description => 3
+    }
+  end  
+
+
+#  def self.search(category = nil, discount = nil, query = nil)
+#    discount = discount.to_i
+#    discount = 20 if discount == nil || discount < 20 || discount >=100
+#    if category
+#      where("(1 - price/original_price) * 100 >= ? and category_id = ?",discount, category)
+#    else
+#      where("(1 - price/original_price) * 100 >= ? ",discount)
+#    end
+#
+#  end
 
   def ensure_not_referenced_by_any_line_item
     if line_items.count.zero?

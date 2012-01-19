@@ -37,6 +37,10 @@ gem "will_paginate"
 
 gem "pg"
 
+gem 'acts-as-taggable-on', '~> 2.2.2'
+
+gem "thinking-sphinx"
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
