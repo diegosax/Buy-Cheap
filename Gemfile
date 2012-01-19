@@ -41,6 +41,8 @@ gem 'thinking-sphinx', '2.0.11'
 
 gem 'flying-sphinx',   '0.6.2'
 
+gem 'acts-as-taggable-on', '~> 2.2.2'
+
 
 # Use unicorn as the web server
 # gem 'unicorn'

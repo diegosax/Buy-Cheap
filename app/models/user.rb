@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :addresses
   attr_accessible :email, :password, :password_confirmation, :area,
                   :birthdate, :celphone, :document, :image, :name,
-                  :razao_social, :sex, :telephone, :addresses_attributes
+                  :razao_social, :sex, :telephone, :addresses_attributes, :remote_image_url
 
 
   attr_accessor :password
