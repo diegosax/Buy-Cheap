@@ -37,6 +37,7 @@ gem "will_paginate"
 
 gem "pg"
 
+gem "riddle"
 
 gem 'flying-sphinx'
 
