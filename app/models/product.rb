@@ -30,7 +30,7 @@ class Product < ActiveRecord::Base
     indexes description      
     indexes category.name, :as => :category_name
     
-    indexes tags.name, :as => :tag_name, :facet => true
+    #indexes tags.name, :as => :tag_name, :facet => true
     
     #TODO: add the where filter: where "status = 'active'"        
 
