@@ -37,12 +37,11 @@ gem "will_paginate"
 
 gem "pg"
 
-gem "riddle"
+gem 'thinking-sphinx', '2.0.11'
 
-gem 'flying-sphinx'
+gem 'flying-sphinx',   '0.6.2'
 
 
-gem 'thinking-sphinx'
 # Use unicorn as the web server
 # gem 'unicorn'
 
