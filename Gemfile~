@@ -40,8 +40,6 @@ gem "pg"
 
 gem 'flying-sphinx'
 
-
-gem 'thinking-sphinx'
 # Use unicorn as the web server
 # gem 'unicorn'
 
