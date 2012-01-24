@@ -29,7 +29,8 @@ class Product < ActiveRecord::Base
     indexes short_description
     indexes description      
     indexes category.name, :as => :category_name
-    
+    indexes company.name, :as => :company_name
+
     #indexes tags.name, :as => :tag_name, :facet => true
     
     #TODO: add the where filter: where "status = 'active'"        
@@ -38,6 +39,7 @@ class Product < ActiveRecord::Base
 
     set_property :field_weights => {
       :name => 10,
+      :company_name => 9,
       :short_description  => 8,
       :tag_name => 7,
       :description => 3

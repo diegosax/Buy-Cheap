@@ -2635,6 +2635,66 @@ span.see_more a{
                  margin: 0;
 }
 
+form.home_search{
+    float: right;    
+    width: 100%;
+    margin-bottom:5px;
+}
+
+form.home_search input[type=submit]{   
+    display: block;
+    background:#C33 no-repeat right;
+    padding-left: 15px;
+    padding-right: 15px;
+    line-height: 3em;
+    color: white;
+    float: left;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: 'Droid Serif', serif;
+    width:15%;
+    font-size: 1.2em;
+    line-height: 0px;
+    height: 39px;        
+    vertical-align: middle;
+    margin-left:2px;    
+    border:none;
+    -webkit-transition: all .1s ease-in;
+    -moz-transition: all .1s ease-in;
+    -o-transition: all .1s ease-in;
+    -ms-transition: all .1s ease-in;
+    transition: all .1s ease-in;
+}
+
+form.home_search input[type=submit]:hover{
+    background-color: #D33;
+    cursor: pointer;
+}
+
+form.home_search input#search{
+    background: #E8E8E8;
+    border:none;
+    border-radius:0;
+    moz-border-radius:0;
+    webkit-border-radius:0;
+    font-family: 'Droid Serif', serif;
+    font-size: 1.75em;
+    line-height: 30px;
+    height: 32px;    
+    vertical-align: middle;
+    text-align: center;
+    width: 84%;
+    color: #333;
+    text-shadow: 0 1px 0 rgba(256, 256, 256, .75);
+    float:left;
+}
+
+form.home_search input#search:focus{
+    outline:0;
+}
+
+
+
 @-webkit-keyframes animate-bg
 {
     from {
