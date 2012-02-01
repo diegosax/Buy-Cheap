@@ -43,6 +43,7 @@ gem 'flying-sphinx',   '0.6.2'
 
 gem 'acts-as-taggable-on', '~> 2.2.2'
 
+gem 'rails-i18n'
 
 # Use unicorn as the web server
 # gem 'unicorn'

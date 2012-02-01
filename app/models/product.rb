@@ -37,6 +37,8 @@ class Product < ActiveRecord::Base
 
     has company_id, category_id, updated_at, created_at, :facet => true
 
+    has "((1 - price/original_price) * 100)", :type => :integer, :as => :discount, :facet => true
+
     set_property :field_weights => {
       :name => 10,
       :company_name => 9,

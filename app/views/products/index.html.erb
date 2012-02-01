@@ -16,55 +16,95 @@
       <%end%>
       <div class="clear"></div>
     </div>
-
-    <div id="listing_options">  
-
-    </div>
-
-    <div class="clear"></div>
-    
-    <div class="s_listing s_grid_view clearfix">
-      <%cont = 0%>
-      <%@products.each do |product|%>
-          <div class="s_item grid_2" style="opacity: 1; ">
-            <%=link_to product, :class => "s_thumb" do%>
-                <%=image_tag product.image.to_s%>
-            <%end%>
-            <h3>
-              <%=link_to product.name, product%>
-            </h3>
-            <p class="s_model">
-              <%=link_to product.company.name, product.company %>
-            </p>
-            <p class="s_currency s_old s_model">
-              De: <%=valor_formatado product.original_price%>
-            </p>
-            <p class="s_after">
-              Por: <%=valor_formatado product.price%>
-            </p>
-            <p class="s_price">
-              <span class="s_currency s_before"></span><%=percentagem_desconto product.original_price, product.price%>%</p>
-            <%=link_to line_items_path(:product_id => product),:method => :post, :class => "s_button_add_to_cart" do%>
-                <span class="s_icon_16"><span class="s_icon"></span>Adicionar ao carrinho</span>
-            <%end%>
-          <%cont = cont + 1%>
-
+    <div id="product-filter-border-top"></div>
+    <div id="product-filter-a">
+          <div class="column">
+            <div class="display">
+              <strong>Display:</strong> 
+              <a href="category-list.html" id="list_a"></a>
+              <a id="grid_b"></a>
+            </div>            
           </div>
-          <%if cont == 6%>
-                <div class="clearfix"></div>
-                <%cont = 0%>
-            <%end%>
-      <%end%>
+          <div class="column_right">
+            <div class="sort">
+              <strong>Sort By:</strong>
+              <select onchange="location = this.value;">
+                <option value="#" selected="selected">Default</option>
+                <option value="#">Name (A - Z)</option>
+                <option value="#">Name (Z - A)</option>
+                <option value="#">Price (Low &gt; High)</option>
+                <option value="#">Price (High &gt; Low)</option>
+                <option value="#">Rating (Highest)</option>
+                <option value="#">Rating (Lowest)</option>
+                <option value="#">Model (A - Z)</option>
+                <option value="#">Model (Z - A)</option>
+              </select>
+            </div>
+            <div class="limit">
+              <strong>Show:</strong>
+              <select onchange="location = this.value;">
+                  <option value="#" selected="selected">15</option>
+                  <option value="#">25</option>
+                  <option value="#">50</option>
+                  <option value="#">75</option>
+                  <option value="#">100</option>
+                </select>
+            </div>
+          </div>
+          
+          <div class="clearfix">&nbsp;</div>
+        </div>
+    
+    
+    <div class="clear"></div>
+    <%if @products.count > 0%>
 
-    </div>
+      <%=render "refine_search"%>
+      <div class="s_listing s_grid_view products_list clearfix">
+        <%cont = 0%>      
+        <%@products.each do |product|%>
+            <div class="s_item grid_2" style="opacity: 1; ">
+              <%=link_to product, :class => "s_thumb" do%>
+                  <%=image_tag product.image.to_s%>
+              <%end%>
+              <h3>
+                <%=link_to product.name, product%>
+              </h3>
+              <p class="s_model">
+                <%=link_to product.company.name, product.company %>
+              </p>
+              <p class="s_currency s_old s_model">
+                De: <%=valor_formatado product.original_price%>
+              </p>
+              <p class="s_after">
+                Por: <%=valor_formatado product.price%>
+              </p>
+              <p class="s_price">
+                <span class="s_currency s_before"></span><%=percentagem_desconto product.original_price, product.price%>%</p>
+              <%=link_to line_items_path(:product_id => product),:method => :post, :class => "s_button_add_to_cart" do%>
+                  <span class="s_icon_16"><span class="s_icon"></span>Adicionar ao carrinho</span>
+              <%end%>
+            <%cont = cont + 1%>
 
-    <div class="pagination">
-      <%=will_paginate @products%>
-      <div class="links"> <b>1</b> <a href="">2</a> <a href="">&gt;</a> <a href="">&gt;|</a> </div>
-      <div class="results">Showing 1 to 12 of 20 (2 Pages)</div>
-    </div>
+            </div>
+            <%if cont == 6%>
+                  <div class="clearfix"></div>
+                  <%cont = 0%>
+              <%end%>
+        <%end%>
 
-  </div>
+      </div>
 
-  <%=render "refine_search"%>
+      <div class="pagination">
+        <%=will_paginate @products%>      
+        <div class="results">
+          <%=page_entries_info @products%>
+        </div>      
+      </div>
+   <%else%>
+    <h2 class = "error">
+      Sua busca não obteve resultados
+    </h2>
+   <%end%>     
+  </div>  
 </div>

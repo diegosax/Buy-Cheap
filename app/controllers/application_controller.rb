@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
 
-
   def load_categories
     @categories = Category.super_categories
   end
@@ -58,7 +57,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
+  def company_ids(ids)
+    ids.split(",").map(&:to_i)
+  end
 
   private
 

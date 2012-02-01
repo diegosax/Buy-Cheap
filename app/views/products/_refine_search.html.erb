@@ -1,20 +1,53 @@
-<div id="sidebar">
-    <div class="widget">            
-      <div class="facets">  
-          <h3>Companies</h3>  
-          <ul>  
-            <% @products.facets[:company_id].each do |option,count| %>                
-              <%company = Company.find(option)%>
-              <li>
-                <% if params[:company_id].blank? %>  
-                  <%puts company.inspect%>
-                  <%= link_to company.name, params.merge(:company_id => company.id) %> (<%= count %>)  
-                <% else %>  
-                  <strong><%= company.name %></strong> (<%= link_to "remover", params.merge(:company_id => nil) %>)  
-                <% end %>  
-              </li>  
-            <% end %>  
-          </ul>  
-        </div>        
+<div id="column-left">
+  <div class="box">
+    <div class="box-heading">Refine sua busca</div>
+    <div class="box-content">
+      <div class="box-category">
+        <ul>
+          <li>
+            <span class="header">Empresas</span>
+            
+            <!-- Companies FACET -->
+            <ul>        
+            
+              <%companies = Company.find(company_ids params[:company_id])%>
+              <%companies.each do |company| %>
+                <li>
+                  <%= link_to company.name, params.except(:page).merge(
+                          :company_id => remove_company_id_param(company.id)
+                        ),:class => "checked" %>
+                </li>
+                <%@products.facets[:company_id].delete(company.id)%>
+                <%@product_company_facets[:company_id].delete(company.id)%>
+              <%end%>          
+              <% @products.facets[:company_id].each do |option,count| %>                
+                <%if !companies.map(&:id).include?(option)%>
+                  <%company = Company.find(option)%>
+                    <li>                    
+                        <%= link_to company.name, params.except(:page).merge(
+                          :company_id => add_company_id_param(company.id)
+                        ),:class=> "" %> (<%= count %>)                     
+                    </li>  
+                  <% end %>
+                <%end%>                    
+              <%@product_company_facets[:company_id].each do |option,count|
+                if params[:company_id].blank?
+                  break
+                else%>
+                  <%company = Company.find(option)%>
+                  <li>
+                    <%= link_to company.name, params.except(:page).merge(
+                      :company_id => add_company_id_param(company.id)
+                    ),:class=> "" %> (<%= count %>)
+                  </li>                                    
+                <%end%>
+              <%end%>                                        
+            </ul>
+
+
+          </li>                
+        </ul>
+      </div>
+    </div>
   </div>
-<div>
+</div>
