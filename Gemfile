@@ -31,8 +31,6 @@ gem 'carrierwave'
 
 gem 'activemerchant'
 
-gem "rmagick"
-
 gem "will_paginate"
 
 gem "pg"

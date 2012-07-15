@@ -38,6 +38,7 @@ Company.create(:name => "RHF Talentos", :razao_social => "RHF Talentos", :docume
                :email => "rhf@rhf.com", :password => "123456", :password_confirmation => "123456")
 
 submarino = Company.find_by_email("submarino@submarino.com")
+puts submarino.inspect
 saraiva = Company.find_by_email("saraiva@saraiva.com")
 americanas = Company.find_by_email("americanas@americanas.com")
 infobox = Company.find_by_email("infobox@infobox.com")
@@ -45,8 +46,7 @@ motorola = Company.find_by_email("motorola@motorola.com")
 lilah = Company.find_by_email("lilah@lilah.com")
 f5filmes = Company.find_by_email("f5filmes@f5filmes.com")
 rhf = Company.find_by_email("rhf@rhf.com")
-
-puts submarino
+puts rhf.inspect
 
 submarino.products.create(
   :name=> "HD Externo 1TB Hitachi",
@@ -365,6 +365,7 @@ saraiva.products.create(
     :category => Category.find_by_name("Eletrônicos")
 )
 
+puts "Playstation"
 americanas.products.create(
     :name => "Tablet Motorola Xoom c/ Sistema Operacional Android 3.0 (Honeycomb)",
     :short_description => "Processador Dual Core 1GHz, 1GB RAM, 32GB HD, Wi-Fi, Câmera 5MP c/
@@ -377,11 +378,13 @@ americanas.products.create(
     :original_price => 1599,
     :price => 799,
     :shippable => true,
-    :remote_image_url => "http://img.americanas.com.br/produtos/01/02/item/7441/3/7441349GG.jpg",
+    :remote_image_url => "http://www.interessante.com.br/images/thumbs/0001021.jpeg",
     :available_on => DateTime.now,
     :deleted_at => DateTime.now + 1.month,
     :category => Category.find_by_name("Eletrônicos")
 )
+
+puts "Motorola xoom"
 
 lilah.products.create(
     :name => "Hidratação Profunda Trivitt com Multi Vitaminas+Silicone",
@@ -396,46 +399,6 @@ A Queratina auxilia na reestruturação do fio danificado, fortalecendo-o e prot
     :price => 7.5,
     :shippable => true,
     :remote_image_url => "http://www.pescariaweb.com.br/V2/static/team/2011/0812/13131803096989.jpg",
-    :available_on => DateTime.now,
-    :deleted_at => DateTime.now + 1.month,
-    :category => Category.find_by_name("Beleza e Saúde")
-)
-
-lilah.products.create(
-    :name => "Peeling de cristal + máscara de ouro + massagem facial",
-    :short_description => "Uma pele linda, hidratada e sem manchas não é coisa de revista. Você também pode ter uma
-                    pele de veludo com esta oferta do cliquemaluco em parceria com a Acesso in Therapia. Com 76% de desconto, você faz:
-                    76% de desconto: 1peeling de cristal + 1máscara de ouro + 1massagem facial",
-    :description => "Peeling de Cristal, método que surgiu na Itália e chega ao Brasil para complementar todos tratamento já existentes:
-
- Revitalização dos tecidos;
-
- Estimular o crescimento de uma nova camada e a produção de colágeno;
-
- Atuar no tratamento de seqüelas de acne, quelóides e cicatrizes pós-trauma (queimaduras), sulcos e rugas superficiais e profundas (rejuvenescimento).
-
- Remove as células morta.
-
-MÁSCARA DE OURO
-
-A utilização do ouro faz parte dos princípios da Oligoterapia ou Terapia Ortomolecular:
-
- Equilibrar os minerais e vitaminas do nosso organismo. Com o passar do tempo
-
- Revigora os minerais, responsáveis por manter a pele jovem.
-
- Utiliza também o cálcio, poderoso mineral que hidrata e combate as manchas de pigmentação.
-
-MASSAGEM FACIAL
-
-A Massagem Facial é a arte de embelezar e beneficiar os tecidos mediante movimentos tradicionais feitos com creme apropriado:
-
- Dá constante revigoramento dos tecidos mantém a epiderme livre de manchas, cravos, espinhas, rugas e outras imperfeições, tornando-a mais resistente ao vento e ao pó.",
-    :stock => 5,
-    :original_price => 200,
-    :price => 49.9,
-    :shippable => true,
-    :remote_image_url => "http://www.cliquemaluco.com.br/produtos/sgrd/6028.jpg",
     :available_on => DateTime.now,
     :deleted_at => DateTime.now + 1.month,
     :category => Category.find_by_name("Beleza e Saúde")

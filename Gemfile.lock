@@ -136,7 +136,6 @@ GEM
     rdoc (3.12)
       json (~> 1.4)
     riddle (1.5.1)
-    rmagick (2.13.1)
     rspec (2.8.0)
       rspec-core (~> 2.8.0)
       rspec-expectations (~> 2.8.0)
@@ -185,7 +184,6 @@ DEPENDENCIES
   pg
   rails (= 3.1.0)
   rails-i18n
-  rmagick
   rspec
   sqlite3-ruby
   thinking-sphinx (= 2.0.11)
