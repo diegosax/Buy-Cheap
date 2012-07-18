@@ -4,3 +4,4 @@ log/*.log
 tmp/**/*
 json/
 .sass-cache/
+./public/uploads/*
