@@ -25,7 +25,7 @@ gem 'httparty','0.6.1'
 
 gem 'jquery-rails'
 
-gem 'paperclip'
+gem 'paperclip', "~> 3.0"
 
 gem 'carrierwave'
 

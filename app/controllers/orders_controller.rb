@@ -101,12 +101,10 @@ class OrdersController < ApplicationController
     @order.current_step = session[:order_step]
     @customer = Customer.new
     if !current_user
-      puts "NAO TEM SESSAO!!!!!!!!!!!"
       session[:payment_proccess] = true
-      session[:order_step] = @order.steps.first
+      session[:order_step] = Order.steps.first
       @order.current_step = session[:order_step]
     elsif @order.first_step?
-      puts "TEM SESSAOOOOO: #{current_user.inspect}"
       @order.next_step
       session[:order_step] = @order.current_step
     elsif params[:step]
@@ -117,18 +115,13 @@ class OrdersController < ApplicationController
       end
     elsif session[:order_step] == "payment"
       processar_pedido
-      puts "JA FOI CHAMADO O METODO Processar_pedido"
       @order.current_step = session[:order_step]
     else
       @order.current_step = session[:order_step]
       processar_pedido
-      puts "CURRENT_STEP: #{@order.current_step}"
       @order.current_step = session[:order_step]
       @order.next_step
-      puts "DEFININDO O ENDERECO DO PEDIDO"
       session[:order_step] = @order.current_step
-      puts "ULTIMO CURRENT_STEP: #{@order.current_step}"
-      puts "ULTIMO CURRENT_STEP DA SESSION #{session[:order_step]}"
     end
     if current_user
         @order.address = current_user.shipping_address
@@ -144,7 +137,6 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.xml
   def create
-    puts "CRIANDO PEDIDO E SALVANDO NO BANCO DE DADOS"
     checkout
     #redirect_to pagseguro_developer_path
   end

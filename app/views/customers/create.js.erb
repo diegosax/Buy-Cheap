@@ -1,3 +1,4 @@
+<%puts @address.inspect%>
 <%if @address%>
     $("#address_field").val("<%=@address[0] + ' ' + @address[1]%>");
     $("#bairro_field").val("<%=@address[2]%>");
@@ -9,4 +10,3 @@
 $(".complement_address").show();
 $("#zipcode_field, #cep_load").removeAttr("disabled");
 $("#zipcode_info, #cep_load_info").html("");
-$("#zipcode_field").val("<%=@address[5]%>");

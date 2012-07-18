@@ -14,7 +14,7 @@ class Order < ActiveRecord::Base
     @current_step || steps.first
   end
 
-  def steps
+  def self.steps
     %w[identification shipping payment]
   end
 

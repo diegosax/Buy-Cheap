@@ -127,7 +127,7 @@
   item_descr_1: Sofa Cama
   item_valor_1: '160000'
   commit: Efetuar pagamento!
-!!null '': {}
+! '': {}
 '112':
   email_cobranca: unicap@unicap.com
   tipo: CP
@@ -189,4 +189,11 @@
   item_id_3: '4'
   item_descr_3: ! 'Livro: Harry Potter'
   item_valor_3: '2700'
+  commit: Efetuar pagamento!
+'2': !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  encoding: UTF-8
+  email_cobranca: diegosax@terra.com.br
+  tipo: CP
+  moeda: BRL
+  ref_transacao: '2'
   commit: Efetuar pagamento!

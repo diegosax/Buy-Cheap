@@ -11,7 +11,7 @@ class Customer < User
   def shipping_address
     address = self.addresses.where(:preferred => true).first
     if address.nil?
-      address = current_user.addresses.first
+      address = self.addresses.first
     end
     address
   end

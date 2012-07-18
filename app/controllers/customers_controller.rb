@@ -46,6 +46,7 @@ class CustomersController < ApplicationController
       format.js do
         begin
           @address = BuscaEndereco.por_cep(params[:zipcode])
+          puts "VALOR DO ENDERECO DO CEP: #{@address.inspect}"
         rescue
           @address = nil
           return
@@ -54,17 +55,13 @@ class CustomersController < ApplicationController
       end
       format.html do
         @customer = Customer.new(params[:customer])
-        @customer.addresses.first.preferred = true
+        @customer.addresses.first.preferred = true if @customer.addresses.first
         if @customer.save
-          puts "AEWWWWWWWWWWWWW CADASTROUUUUUUUUUUUUUUU"
           session[:user_id] = @customer.id
           current_cart.empty? ? redirect_path = root_url : redirect_path = new_order_url
-          puts "TEM QUE REDIRECIONAR PARA O ROOT: #{redirect_path.inspect}"
           redirect_to(redirect_path, :notice => "Cadastro efetuado com sucesso")
-          return
-          puts "NAO PODE VIR ESTA LINHA!!!!!!!!!!!!!"
-        else
-          puts "NAO CADASTROUUUUUUUUUUUUU: #{@customer.errors.inspect}"
+          return          
+        else          
           format.html { render :action => "new" }
           format.xml  { render :xml => @customer.errors, :status => :unprocessable_entity }
         end
